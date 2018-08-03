@@ -1,0 +1,14 @@
+.bar{
+    background-color: #4E1E10;
+    color: white;
+}
+
+.p{
+    padding: 0;
+}
+
+header{
+    display: block;
+    margin: 0 0 0 0;
+    padding: 0;
+}
