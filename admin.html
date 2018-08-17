@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Nacatato's Cake</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <form>
+            <select id="tipo">
+                <option value="bolo">bolo</option>
+                <option value="bolo de pote">bolo de pote</option>
+                <option value="cupcake">cupcake</option>
+            </select><br><br>
+            Nome:<br>
+            <input type="text" id="nomebolo"><br>
+            Sabor:<br>
+            <input type="text" id="sabor"><br>
+            Recheio:<br>
+            <input type="text" id="recheio"><br>
+            Cobertura:<br>
+            <input type="text" id="cobertura"><br><br>
+            <button onclick="writeUserData()">Cadastrar</button>
+        </form>
+        <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCVFt-wU_Ap8hNj3YUrJCq7CFXA7TYiOc0",
+                authDomain: "nacarato-s.firebaseapp.com",
+                databaseURL: "https://nacarato-s.firebaseio.com",
+                projectId: "nacarato-s",
+                storageBucket: "nacarato-s.appspot.com",
+                messagingSenderId: "916033923262"
+            };
+            firebase.initializeApp(config);
+            var database = firebase.database();
+
+            function writeUserData(tipo) {
+                firebase.database().ref(document.getElementById("tipo").value+ '/' + document.getElementById("nomebolo").value).set({
+                    sabor: document.getElementById("sabor").value,
+                    recheio: document.getElementById("recheio").value,
+                    cobertura : document.getElementById("cobertura").value
+                });
+            }
+        </script>
+    </body>
+</html>
