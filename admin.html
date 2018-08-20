@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Nacatato's Cake</title>
+        <title>Nacarato's Cake</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/style.css">
     </head>
@@ -19,8 +19,43 @@
             <input type="text" id="recheio"><br>
             Cobertura:<br>
             <input type="text" id="cobertura"><br><br>
-            <button onclick="writeUserData()">Cadastrar</button>
+            <button onclick="writeUserData()">Cadastrar</button><br><br><br>
         </form>
+
+        <select id="tipoBusca">
+            <option value="bolo">bolo</option>
+            <option value="bolo de pote">bolo de pote</option>
+            <option value="cupcake">cupcake</option>
+        </select><br><br>
+        Buscar:
+        <input type="text" id="buscaproduto"><br>
+        <button onclick="buscaComida()">Buscar</button>
+
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Sabor</th>
+                    <th>Recheio</th>
+                    <th>Cobertura</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td><span id="tbNome"></span></td>
+                    <td><span id="tbSabor"></span></td>
+                    <td><span id="tbRecheio"></span></td>
+                    <td><span id="tbCobertura"></span></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
         <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
         <script>
             // Initialize Firebase
@@ -40,6 +75,19 @@
                     sabor: document.getElementById("sabor").value,
                     recheio: document.getElementById("recheio").value,
                     cobertura : document.getElementById("cobertura").value
+                });
+            }
+
+            function buscaComida(){
+                var busca = document.getElementById("buscaproduto").value;
+                var dados;
+                //document.getElementById("tbSabor").textContent = busca;
+                var ref = firebase.database().ref(document.getElementById("tipoBusca").value);
+                ref.orderByKey().equalTo(busca).on("child_added", function(snapshot) {
+                    document.getElementById("tbNome").textContent = busca;
+                    document.getElementById("tbSabor").textContent = snapshot.val().sabor;
+                    document.getElementById("tbRecheio").textContent = snapshot.val().recheio;
+                    document.getElementById("tbCobertura").textContent = snapshot.val().cobertura;
                 });
             }
         </script>
