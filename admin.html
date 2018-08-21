@@ -36,7 +36,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Nome</th>
                     <th>Sabor</th>
                     <th>Recheio</th>
@@ -45,15 +44,14 @@
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
-                    <td><span id="tbNome"></span></td>
-                    <td><span id="tbSabor"></span></td>
-                    <td><span id="tbRecheio"></span></td>
-                    <td><span id="tbCobertura"></span></td>
+                    <td><input type="text" id="tbNome"></td>
+                    <td><input type="text" id="tbSabor"></td>
+                    <td><input type="text" id="tbRecheio"></td>
+                    <td><input type="text" id="tbCobertura"></td>
                 </tr>
             </tbody>
         </table>
-
+        <button onclick="updateUserData()">Alterar</button>
 
 
         <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
@@ -70,11 +68,21 @@
             firebase.initializeApp(config);
             var database = firebase.database();
 
-            function writeUserData(tipo) {
+            function writeUserData() {
                 firebase.database().ref(document.getElementById("tipo").value+ '/' + document.getElementById("nomebolo").value).set({
                     sabor: document.getElementById("sabor").value,
                     recheio: document.getElementById("recheio").value,
                     cobertura : document.getElementById("cobertura").value
+                });
+            }
+            
+            function updateUserData() {
+                //firebase.database().child(document.getElementById("buscaproduto").value).remove;
+                //como nao ha jeito de atualizar a key, devera apagar o nome e criar outro logo em seguida para alterar o nome do produto
+                firebase.database().ref(document.getElementById("tipoBusca").value + '/' + document.getElementById("buscaproduto").value).set({
+                    sabor: document.getElementById("tbSabor").value,
+                    recheio: document.getElementById("tbRecheio").value,
+                    cobertura : document.getElementById("tbCobertura").value
                 });
             }
 
@@ -84,10 +92,10 @@
                 //document.getElementById("tbSabor").textContent = busca;
                 var ref = firebase.database().ref(document.getElementById("tipoBusca").value);
                 ref.orderByKey().equalTo(busca).on("child_added", function(snapshot) {
-                    document.getElementById("tbNome").textContent = busca;
-                    document.getElementById("tbSabor").textContent = snapshot.val().sabor;
-                    document.getElementById("tbRecheio").textContent = snapshot.val().recheio;
-                    document.getElementById("tbCobertura").textContent = snapshot.val().cobertura;
+                    document.getElementById("tbNome").value = busca;
+                    document.getElementById("tbSabor").value = snapshot.val().sabor;
+                    document.getElementById("tbRecheio").value = snapshot.val().recheio;
+                    document.getElementById("tbCobertura").value = snapshot.val().cobertura;
                 });
             }
         </script>
