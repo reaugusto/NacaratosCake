@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>Nacarato's Cake</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <form>
+            <select id="tipo">
+                <option value="bolo">bolo</option>
+                <option value="bolo de pote">bolo de pote</option>
+                <option value="cupcake">cupcake</option>
+            </select><br><br>
+            Nome:<br>
+            <input type="text" id="nomebolo"><br>
+            Sabor:<br>
+            <input type="text" id="sabor"><br>
+            Recheio:<br>
+            <input type="text" id="recheio"><br>
+            Cobertura:<br>
+            <input type="text" id="cobertura"><br><br>
+            <button onclick="writeUserData()">Cadastrar</button><br><br><br>
+        </form>
+
+        <select id="tipoBusca">
+            <option value="bolo">bolo</option>
+            <option value="bolo de pote">bolo de pote</option>
+            <option value="cupcake">cupcake</option>
+        </select><br><br>
+        Buscar:
+        <input type="text" id="buscaproduto"><br>
+        <button onclick="buscaComida()">Buscar</button>
+
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Sabor</th>
+                    <th>Recheio</th>
+                    <th>Cobertura</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" id="tbNome"></td>
+                    <td><input type="text" id="tbSabor"></td>
+                    <td><input type="text" id="tbRecheio"></td>
+                    <td><input type="text" id="tbCobertura"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="updateUserData()">Alterar</button>
+
+
+        <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCVFt-wU_Ap8hNj3YUrJCq7CFXA7TYiOc0",
+                authDomain: "nacarato-s.firebaseapp.com",
+                databaseURL: "https://nacarato-s.firebaseio.com",
+                projectId: "nacarato-s",
+                storageBucket: "nacarato-s.appspot.com",
+                messagingSenderId: "916033923262"
+            };
+            firebase.initializeApp(config);
+            var database = firebase.database();
+
+            function writeUserData() {
+                firebase.database().ref(document.getElementById("tipo").value+ '/' + document.getElementById("nomebolo").value).set({
+                    sabor: document.getElementById("sabor").value,
+                    recheio: document.getElementById("recheio").value,
+                    cobertura : document.getElementById("cobertura").value
+                });
+            }
+            
+            function updateUserData() {
+                //firebase.database().child(document.getElementById("buscaproduto").value).remove;
+                //como nao ha jeito de atualizar a key, devera apagar o nome e criar outro logo em seguida para alterar o nome do produto
+                firebase.database().ref(document.getElementById("tipoBusca").value + '/' + document.getElementById("buscaproduto").value).set({
+                    sabor: document.getElementById("tbSabor").value,
+                    recheio: document.getElementById("tbRecheio").value,
+                    cobertura : document.getElementById("tbCobertura").value
+                });
+            }
+
+            function buscaComida(){
+                var busca = document.getElementById("buscaproduto").value;
+                var dados;
+                //document.getElementById("tbSabor").textContent = busca;
+                var ref = firebase.database().ref(document.getElementById("tipoBusca").value);
+                ref.orderByKey().equalTo(busca).on("child_added", function(snapshot) {
+                    document.getElementById("tbNome").value = busca;
+                    document.getElementById("tbSabor").value = snapshot.val().sabor;
+                    document.getElementById("tbRecheio").value = snapshot.val().recheio;
+                    document.getElementById("tbCobertura").value = snapshot.val().cobertura;
+                });
+            }
+        </script>
+    </body>
+</html>
