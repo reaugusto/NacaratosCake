@@ -8,8 +8,9 @@
     align-items: center;
 }
 
-.p {
+.p0 {
     padding: 0;
+    margin: 0;
 }
 
 .p2 {
@@ -30,17 +31,37 @@ header {
     background-image: url(../img/282860-P61N1Z-483.png);
     background-color: rgba(0, 0, 0, 0.7);
     background-repeat: no-repeat;
-    background-size: auto;
-    height: 95%;
+    background-size: cover;
+    height: 90%;
     z-index: 0;
 }
-.content {
+
+.sobre {
     background: #4E1E10;
-    height: 90%;
-    z-index: -1;
+    height: 100%;
+    z-index: 1;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+.produtos {
+    background: red;
+    height: 100%;
+    z-index: 3;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+.contato {
+    background: blue;
+    height: 100%;
+    z-index: 2;
+    position: relative;
+    padding: 0;
+    margin: 0;
 }
 
-#navbar {
+.navbar {
     width: 80%;
     height: 100px;
     background: #D59310;
@@ -49,20 +70,28 @@ header {
     justify-content: center;
     align-items: center;
     margin: -50px auto;
-    z-index: 9999;
+    z-index: 10;
+    border: 0;
+    padding: 0;
+    position: absolute;
+}
+
+.container-sobre{
+    margin-top: 10%;
 }
 
 
-.sticky {
-    position: fixed;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    width: 80%;
+
+.affix {
+    top: 50px;
+    width: 100%;
+    height: 60px;
 }
 
-.sticky + .content {
-    padding-top: 0;
+.affix + .container-fluid {
+    padding-top: 0px;
 }
 
-
+section{
+    top: -70px;
+}
