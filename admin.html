@@ -19,6 +19,8 @@
             <input type="text" id="recheio"><br>
             Cobertura:<br>
             <input type="text" id="cobertura"><br><br>
+            Imagem:<br>
+            <input type="file" id="imagem"><br><br>
             <button onclick="writeUserData()">Cadastrar</button><br><br><br>
         </form>
 
@@ -51,7 +53,19 @@
                 </tr>
             </tbody>
         </table>
-        <button onclick="updateUserData()">Alterar</button>
+        <button onclick="updateUserData()">Alterar</button><br><br>
+        <button onclick="deleteUserData()">Deletar</button><br><br>
+
+        Sabor:<br>
+        <input type="text" id="monteSabor"><br>
+        Recheio:<br>
+        <input type="text" id="monteRecheio"><br>
+        Cobertura:<br>
+        <input type="text" id="monteCobertura"><br>
+        <input type="checkbox" id="mBolo">Bolo<br>
+        <input type="checkbox" id="mCupcake">Cupcake<br>
+        <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
+        <button onclick="writeSelfService()">Cadastrar</button><br><br><br>
 
 
         <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
@@ -67,6 +81,29 @@
             };
             firebase.initializeApp(config);
             var database = firebase.database();
+            var imagem = document.getElementById("imagem");
+
+            //adiciona a imagem no storage
+            imagem.addEventListener('change', function(e) {
+                //Get file
+                var file = e.target.files[0];
+
+                //Create a storage ref
+                //var storageRef = firebase.storage().ref('imagens/' + file.name);
+                var storageRef = firebase.storage().ref('imagens/' + document.getElementById("nomebolo").value + '.png');
+                //Upload file
+                var task = storageRef.put(file);
+                //Completion result
+                task.on('state_changed',
+
+                        function error(err) {
+
+                },
+
+                        function complete(){
+
+                }
+                       )});
 
             function writeUserData() {
                 firebase.database().ref(document.getElementById("tipo").value+ '/' + document.getElementById("nomebolo").value).set({
@@ -75,15 +112,26 @@
                     cobertura : document.getElementById("cobertura").value
                 });
             }
-            
+
             function updateUserData() {
-                //firebase.database().child(document.getElementById("buscaproduto").value).remove;
                 //como nao ha jeito de atualizar a key, devera apagar o nome e criar outro logo em seguida para alterar o nome do produto
+                //storageRef.child(document.getElementById("imagem"))
                 firebase.database().ref(document.getElementById("tipoBusca").value + '/' + document.getElementById("buscaproduto").value).set({
                     sabor: document.getElementById("tbSabor").value,
                     recheio: document.getElementById("tbRecheio").value,
                     cobertura : document.getElementById("tbCobertura").value
                 });
+            }
+
+            function deleteUserData(){
+                database.ref(document.getElementById("tipoBusca").value + '/' + document.getElementById("buscaproduto").value).remove();
+
+                //apagar a imagem relacionada no storage tb (storageRef nome do bolo.remove() )
+
+                document.getElementById("tbNome").value = " ";
+                document.getElementById("tbSabor").value = " ";
+                document.getElementById("tbRecheio").value = " ";
+                document.getElementById("tbCobertura").value = " ";
             }
 
             function buscaComida(){
@@ -98,6 +146,42 @@
                     document.getElementById("tbCobertura").value = snapshot.val().cobertura;
                 });
             }
+
+
+            //MONTE O SEU
+
+            function writeSelfService(){
+                //console.log(document.getElementById("mBolo").checked); //var monteSabor = document.getElementById("monteSabor").checked;
+                //console.log(document.getElementById("mCupcake").checked); //var monteRecheio = document.getElementById("monteRecheio").checked;
+                //console.log(document.getElementById("mBolodepote").checked); //var monteCobertura = document.getElementById("monteCobertura").checked;
+                
+                if(document.getElementById("monteSabor").value.length){//trata a condicao de o campo estar vazio
+                    database.ref("monteoseu/mSabor/" + document.getElementById("monteSabor").value).set({
+                    bolo: document.getElementById("mBolo").checked,
+                    cupcake: document.getElementById("mCupcake").checked,
+                    bolodepote: document.getElementById("mBolodepote").checked
+                });
+                }
+                
+                if(document.getElementById("monteRecheio").value.length){
+                database.ref("monteoseu/mRecheio/" + document.getElementById("monteRecheio").value).set({
+                    bolo: document.getElementById("mBolo").checked,
+                    cupcake: document.getElementById("mCupcake").checked,
+                    bolodepote: document.getElementById("mBolodepote").checked
+                });
+                }
+                    
+                if(document.getElementById("monteCobertura").value.length){
+                database.ref("monteoseu/mCobertura/" + document.getElementById("monteCobertura").value).set({
+                    bolo: document.getElementById("mBolo").checked,
+                    cupcake: document.getElementById("mCupcake").checked,
+                    bolodepote: document.getElementById("mBolodepote").checked
+                });
+                }
+            }
+
+
+
         </script>
     </body>
 </html>
