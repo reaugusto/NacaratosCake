@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        CADASTRAR PRODUTO <br><br>
         <form>
             <select id="tipo">
                 <option value="bolo">bolo</option>
@@ -21,16 +22,16 @@
             <input type="text" id="cobertura"><br><br>
             Imagem:<br>
             <input type="file" id="imagem"><br><br>
-            <button onclick="writeUserData()">Cadastrar</button><br><br><br>
+            <button onclick="writeUserData()">Cadastrar</button><br><hr>
         </form>
-
         <select id="tipoBusca">
             <option value="bolo">bolo</option>
             <option value="bolo de pote">bolo de pote</option>
             <option value="cupcake">cupcake</option>
         </select><br><br>
+
         Buscar:
-        <input type="text" id="buscaproduto"><br>
+        <input type="text" id="buscaproduto"><br><br>
         <button onclick="buscaComida()">Buscar</button>
 
 
@@ -52,9 +53,11 @@
                     <td><input type="text" id="tbCobertura"></td>
                 </tr>
             </tbody>
-        </table>
+        </table><br>
         <button onclick="updateUserData()">Alterar</button><br><br>
-        <button onclick="deleteUserData()">Deletar</button><br><br>
+        <button onclick="deleteUserData()">Deletar</button><br><br><hr>
+
+        <br>MONTE O SEU<br><br>
 
         Sabor:<br>
         <input type="text" id="monteSabor"><br>
@@ -65,123 +68,60 @@
         <input type="checkbox" id="mBolo">Bolo<br>
         <input type="checkbox" id="mCupcake">Cupcake<br>
         <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
-        <button onclick="writeSelfService()">Cadastrar</button><br><br><br>
+        <button onclick="writeSelfService()">Cadastrar</button><br><hr>
 
+        Buscar: <br>
+        <button onclick="buscaSelfService()">Buscar todos</button><br><br><hr>
+
+
+
+
+
+        Sabores: 
+        <ol id="buscaSabores">
+        </ol><br>
+        
+        
+        Recheios:
+        <ul id="buscaRecheios">
+            <li>Hit the gym</li>
+        </ul><br>
+        Coberturas:
+        <ul id="buscaCoberturas">
+            <li>Hit the gym</li>
+        </ul><br><hr>
+        
+        
+        
+        
+        
+        
+
+
+
+
+
+        Sabor:<br>
+        <input type="text" id="buscaMonteSabor"><br><!--tera uma lista da qual, quando clicado, ur popular estes inputs e checkboxes-->
+        <input type="checkbox" id="mBolo">Bolo<br>
+        <input type="checkbox" id="mCupcake">Cupcake<br>
+        <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
+
+        Recheio:<br>
+        <input type="text" id="buscaMonteRecheio"><br>
+        <input type="checkbox" id="mBolo">Bolo<br>
+        <input type="checkbox" id="mCupcake">Cupcake<br>
+        <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
+
+        Cobertura:<br>
+        <input type="text" id="buscaMonteCobertura"><br>
+        <input type="checkbox" id="mBolo">Bolo<br>
+        <input type="checkbox" id="mCupcake">Cupcake<br>
+        <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
+
+        <button onclick="salvaSelfService()"></button><!--salva no banco as alteracoes feitas no sabor-->
 
         <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
-        <script>
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyCVFt-wU_Ap8hNj3YUrJCq7CFXA7TYiOc0",
-                authDomain: "nacarato-s.firebaseapp.com",
-                databaseURL: "https://nacarato-s.firebaseio.com",
-                projectId: "nacarato-s",
-                storageBucket: "nacarato-s.appspot.com",
-                messagingSenderId: "916033923262"
-            };
-            firebase.initializeApp(config);
-            var database = firebase.database();
-            var imagem = document.getElementById("imagem");
-
-            //adiciona a imagem no storage
-            imagem.addEventListener('change', function(e) {
-                //Get file
-                var file = e.target.files[0];
-
-                //Create a storage ref
-                //var storageRef = firebase.storage().ref('imagens/' + file.name);
-                var storageRef = firebase.storage().ref('imagens/' + document.getElementById("nomebolo").value + '.png');
-                //Upload file
-                var task = storageRef.put(file);
-                //Completion result
-                task.on('state_changed',
-
-                        function error(err) {
-
-                },
-
-                        function complete(){
-
-                }
-                       )});
-
-            function writeUserData() {
-                firebase.database().ref(document.getElementById("tipo").value+ '/' + document.getElementById("nomebolo").value).set({
-                    sabor: document.getElementById("sabor").value,
-                    recheio: document.getElementById("recheio").value,
-                    cobertura : document.getElementById("cobertura").value
-                });
-            }
-
-            function updateUserData() {
-                //como nao ha jeito de atualizar a key, devera apagar o nome e criar outro logo em seguida para alterar o nome do produto
-                //storageRef.child(document.getElementById("imagem"))
-                firebase.database().ref(document.getElementById("tipoBusca").value + '/' + document.getElementById("buscaproduto").value).set({
-                    sabor: document.getElementById("tbSabor").value,
-                    recheio: document.getElementById("tbRecheio").value,
-                    cobertura : document.getElementById("tbCobertura").value
-                });
-            }
-
-            function deleteUserData(){
-                database.ref(document.getElementById("tipoBusca").value + '/' + document.getElementById("buscaproduto").value).remove();
-
-                //apagar a imagem relacionada no storage tb (storageRef nome do bolo.remove() )
-
-                document.getElementById("tbNome").value = " ";
-                document.getElementById("tbSabor").value = " ";
-                document.getElementById("tbRecheio").value = " ";
-                document.getElementById("tbCobertura").value = " ";
-            }
-
-            function buscaComida(){
-                var busca = document.getElementById("buscaproduto").value;
-                var dados;
-                //document.getElementById("tbSabor").textContent = busca;
-                var ref = firebase.database().ref(document.getElementById("tipoBusca").value);
-                ref.orderByKey().equalTo(busca).on("child_added", function(snapshot) {
-                    document.getElementById("tbNome").value = busca;
-                    document.getElementById("tbSabor").value = snapshot.val().sabor;
-                    document.getElementById("tbRecheio").value = snapshot.val().recheio;
-                    document.getElementById("tbCobertura").value = snapshot.val().cobertura;
-                });
-            }
-
-
-            //MONTE O SEU
-
-            function writeSelfService(){
-                //console.log(document.getElementById("mBolo").checked); //var monteSabor = document.getElementById("monteSabor").checked;
-                //console.log(document.getElementById("mCupcake").checked); //var monteRecheio = document.getElementById("monteRecheio").checked;
-                //console.log(document.getElementById("mBolodepote").checked); //var monteCobertura = document.getElementById("monteCobertura").checked;
-                
-                if(document.getElementById("monteSabor").value.length){//trata a condicao de o campo estar vazio
-                    database.ref("monteoseu/mSabor/" + document.getElementById("monteSabor").value).set({
-                    bolo: document.getElementById("mBolo").checked,
-                    cupcake: document.getElementById("mCupcake").checked,
-                    bolodepote: document.getElementById("mBolodepote").checked
-                });
-                }
-                
-                if(document.getElementById("monteRecheio").value.length){
-                database.ref("monteoseu/mRecheio/" + document.getElementById("monteRecheio").value).set({
-                    bolo: document.getElementById("mBolo").checked,
-                    cupcake: document.getElementById("mCupcake").checked,
-                    bolodepote: document.getElementById("mBolodepote").checked
-                });
-                }
-                    
-                if(document.getElementById("monteCobertura").value.length){
-                database.ref("monteoseu/mCobertura/" + document.getElementById("monteCobertura").value).set({
-                    bolo: document.getElementById("mBolo").checked,
-                    cupcake: document.getElementById("mCupcake").checked,
-                    bolodepote: document.getElementById("mBolodepote").checked
-                });
-                }
-            }
-
-
-
-        </script>
+        <script src="Js/admin.js"></script>
     </body>
 </html>
