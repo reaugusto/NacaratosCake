@@ -18,32 +18,34 @@
 
 
     <div class="container-fluid justify-content-center p0">
-        <header class="0" id="home">
+        <header class="0" id="nacaratos">
             <div class="row nave">
                 <div class="col-sm-11">
-                    <i class="fas fa-phone px-2 mr-2"></i><a> (xx)x xxxx-xxxx</a>
-                    <i class="fas fa-phone px-2"></i><a> (xx)x xxxx-xxxx</a>
+                    <a><i class="fas fa-phone px-2"></i> (xx)xxxxx-xxxx</a>
+                    <a><i class="fas fa-phone px-2"></i> (xx)xxxxx-xxxx</a>
                 </div>
-                <div class="col-2 d-flex flex-row-reverse">
+                <div class="col">
                     <button type="button" class="btn btn-warning" onclick="document.getElementById('id01').style.display='block'">Contate-nos</button>
                 </div>
 
             </div>
-            <div class="row p0 home">
+            <div class="row p0 home" id="home">
                 <div class="logo">
-                    <img src="img/logo.png" alt="Logo Nacarato's">
+                    <img src="img/logo.png" alt="Logo Nacarato's" class="img-responsive">
+                </div>
+                <div class="barra">
                 </div>
             </div>
         </header>
         <div class="row p0">
             <div class="navbar hidden-xs">
-                <div class="col-sm-2 me"><a href="#home">
+                <div class="col-sm-2 me"><a href="#nacaratos">
                     Home
                 </a></div>
                 <div class="col-sm-2 me"><a href="#sobre">
                     Sobre
                 </a></div>
-                <div class="col-sm-4 me"><a href="#home">
+                <div class="col-sm-4 me"><a href="#nacaratos">
                     Nacaratos
                 </a></div>
                 <div class="col-sm-2 me"><a href="#produtos">
@@ -94,14 +96,14 @@
 
     <script>
         $(document).ready(function() {
-            /* affix the navbar after scroll below header */
-            $(".navbar").affix({
-                offset: {
-                    top: $(".home").outerHeight(true)
-                }
-            });
-        });
+                    /* affix the navbar after scroll below header */
+                    $(".navbar").affix({
+                            offset: {
+                                top:$(".nave").outerHeight(false)
+                            }
 
+                        });
+                    });
 
     </script>
 </body>
