@@ -5,8 +5,8 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-       CADASTRAR PRODUTO <br><br>
-           
+        CADASTRAR PRODUTO <br><br>
+        <form>
             <select id="tipo">
                 <option value="bolo">bolo</option>
                 <option value="bolo de pote">bolo de pote</option>
@@ -23,7 +23,7 @@
             Imagem:<br>
             <input type="file" id="imagem"><br><br>
             <button onclick="writeUserData()">Cadastrar</button><br><hr>
-
+        </form>
         <select id="tipoBusca">
             <option value="bolo">bolo</option>
             <option value="bolo de pote">bolo de pote</option>
@@ -56,7 +56,7 @@
         </table><br>
         <button onclick="updateUserData()">Alterar</button><br><br>
         <button onclick="deleteUserData()">Deletar</button><br><br><hr>
-        
+
         <br>MONTE O SEU<br><br>
 
         Sabor:<br>
@@ -69,29 +69,58 @@
         <input type="checkbox" id="mCupcake">Cupcake<br>
         <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
         <button onclick="writeSelfService()">Cadastrar</button><br><hr>
-        
+
         Buscar: <br>
-        <button onclick="buscaSelfService()">Buscar todos</button><br>
+        <button onclick="buscaSelfService()">Buscar todos</button><br><br><hr>
+
+
+
+
+
+        Sabores: 
+        <ol id="buscaSabores">
+        </ol><br>
+        
+        
+        Recheios:
+        <ul id="buscaRecheios">
+            <li>Hit the gym</li>
+        </ul><br>
+        Coberturas:
+        <ul id="buscaCoberturas">
+            <li>Hit the gym</li>
+        </ul><br><hr>
+        
+        
+        
+        
+        
+        
+
+
+
+
+
         Sabor:<br>
         <input type="text" id="buscaMonteSabor"><br><!--tera uma lista da qual, quando clicado, ur popular estes inputs e checkboxes-->
         <input type="checkbox" id="mBolo">Bolo<br>
         <input type="checkbox" id="mCupcake">Cupcake<br>
         <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
-        
+
         Recheio:<br>
         <input type="text" id="buscaMonteRecheio"><br>
         <input type="checkbox" id="mBolo">Bolo<br>
         <input type="checkbox" id="mCupcake">Cupcake<br>
         <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
-        
+
         Cobertura:<br>
         <input type="text" id="buscaMonteCobertura"><br>
         <input type="checkbox" id="mBolo">Bolo<br>
         <input type="checkbox" id="mCupcake">Cupcake<br>
         <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
-        
+
         <button onclick="salvaSelfService()"></button><!--salva no banco as alteracoes feitas no sabor-->
-        
+
         <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
         <script src="Js/admin.js"></script>
     </body>

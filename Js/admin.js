@@ -64,7 +64,7 @@ function updateUserData() {
                 return ref.update(update);
             });
             }else{}*/   
-        
+
         firebase.database().ref(document.getElementById("tipoBusca").value + '/' + document.getElementById("tbNome").value).set({
             sabor: document.getElementById("tbSabor").value,
             recheio: document.getElementById("tbRecheio").value,
@@ -79,7 +79,7 @@ function deleteUserData(){
     database.ref(document.getElementById("tipoBusca").value + '/' + busca).remove();
 
     //apagar a imagem relacionada no storage tb (storageRef nome do bolo.remove() )
-    
+
     document.getElementById("tbNome").value = "";//ERRO AQUI
     document.getElementById("tbSabor").value = "";//AQUI
     document.getElementById("tbRecheio").value = "";//AQUI
@@ -133,10 +133,31 @@ function writeSelfService(){
     }
 }
 
-/*function buscaSelfService(){
-
+function buscaSelfService() {
+    var ref = database.ref("monteoseu/mSabor");
+    ref.on('value',gotData,errData);
 }
 
-function salvaSelfService(){
+function gotData(data){
+    var names = data.val();
+    var keys = Object.keys(names);
+    console.log("keys: "+keys);
+    for (var i=0;i<keys.length;i++){
+        var k = keys[i];
+        var li = document.createElement('li');
+        li.append(k);
+        var campo = document.getElementById("buscaSabores");
+        campo.appendChild(li);
+    }
+}
+
+function errData(err){
+    console.log('Error!');
+    console.log(err);
+}
+
+
+
+/*function salvaSelfService(){
 
 }*/
