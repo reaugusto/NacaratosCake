@@ -10,19 +10,13 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 var imagem = document.getElementById("imagem");
+var file;
 
 //adiciona a imagem no storage
 imagem.addEventListener('change', function(e) {
     //Get file
-    var file = e.target.files[0];
-
-    //Create a storage ref
-    //var storageRef = firebase.storage().ref('imagens/' + file.name);
-    var storageRef = firebase.storage().ref('imagens/' + document.getElementById("nomebolo").value + '.png');
-    //Upload file
-    var task = storageRef.put(file);
-    //Completion result
-    task.on('state_changed',
+    file = e.target.files[0];
+    /*task.on('state_changed',
 
             function error(err) {
 
@@ -31,7 +25,8 @@ imagem.addEventListener('change', function(e) {
             function complete(){
 
     }
-           )});
+           )*/
+});
 
 function writeUserData() {
     if(document.getElementById("nomebolo").value.length){
@@ -40,6 +35,12 @@ function writeUserData() {
             recheio: document.getElementById("recheio").value,
             cobertura : document.getElementById("cobertura").value
         });
+        //Create a storage ref
+        var storageRef = firebase.storage().ref('imagens/' + document.getElementById("nomebolo").value + '.png');
+        //Upload file
+        storageRef.put(file).then(function(snapshot) {
+            alert('Uploaded a blob or file!');
+        });  
     }else{
         alert("Campo de nome vazio!");
     }
