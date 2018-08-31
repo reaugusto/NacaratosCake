@@ -6,23 +6,23 @@
     </head>
     <body>
         CADASTRAR PRODUTO <br><br>
-            <select id="tipo">
-                <option value="bolo">bolo</option>
-                <option value="bolo de pote">bolo de pote</option>
-                <option value="cupcake">cupcake</option>
-            </select><br><br>
-            Nome:<br>
-            <input type="text" id="nomebolo"><br>
-            Sabor:<br>
-            <input type="text" id="sabor"><br>
-            Recheio:<br>
-            <input type="text" id="recheio"><br>
-            Cobertura:<br>
-            <input type="text" id="cobertura"><br><br>
-            Imagem:<br>
-            <input type="file" id="imagem"><br><br>
-            <button onclick="writeUserData()">Cadastrar</button><br><hr>
-            
+        <select id="tipo">
+            <option value="bolo">bolo</option>
+            <option value="bolo de pote">bolo de pote</option>
+            <option value="cupcake">cupcake</option>
+        </select><br><br>
+        Nome:<br>
+        <input type="text" id="nomebolo"><br>
+        Sabor:<br>
+        <input type="text" id="sabor"><br>
+        Recheio:<br>
+        <input type="text" id="recheio"><br>
+        Cobertura:<br>
+        <input type="text" id="cobertura"><br><br>
+        Imagem:<br>
+        <input type="file" id="imagem"><br><br>
+        <button onclick="writeUserData()">Cadastrar</button><br><hr>
+
         <select id="tipoBusca">
             <option value="bolo">bolo</option>
             <option value="bolo de pote">bolo de pote</option>
@@ -30,9 +30,18 @@
         </select><br><br>
 
         Buscar:
-        <input type="text" id="buscaproduto"><br><br>
-        <button onclick="buscaComida()">Buscar</button>
-
+        <input type="text" id="buscaproduto">
+        <button onclick="buscaComida()">Buscar</button><br><br>
+        <button onclick="mostraComida()">Mostrar Todos</button><br><br>
+        Bolos:
+        <ol id="mostraTodosBolos">
+        </ol>
+        Cupcakes:
+        <ol id="mostraTodosCupcakes">
+        </ol>
+        Bolos de pote
+        <ol id="mostraTodosBolosdepote">
+        </ol>
 
 
         <table>
@@ -69,39 +78,23 @@
         <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
         <button onclick="writeSelfService()">Cadastrar</button><br><hr>
 
-        Buscar: <br>
-        <button onclick="buscaSelfService()">Buscar todos</button><br><br><hr>
-
-
-
+        Buscar: <input type="text" id="buscaMonteOSeu"><br><br>
+        <button onclick="buscaSelfService()">Mostrar todos</button><br><br>
 
 
         Sabores: 
         <ol id="buscaSabores">
         </ol><br>
-        
-        
         Recheios:
         <ul id="buscaRecheios">
-            <li>Hit the gym</li>
         </ul><br>
         Coberturas:
         <ul id="buscaCoberturas">
-            <li>Hit the gym</li>
         </ul><br><hr>
-        
-        
-        
-        
-        
-        
-
-
-
 
 
         Sabor:<br>
-        <input type="text" id="buscaMonteSabor"><br><!--tera uma lista da qual, quando clicado, ur popular estes inputs e checkboxes-->
+        <input type="text" id="buscaMonteSabor"><br><!--tera uma lista da qual, quando clicado, ira popular estes inputs e checkboxes-->
         <input type="checkbox" id="mBolo">Bolo<br>
         <input type="checkbox" id="mCupcake">Cupcake<br>
         <input type="checkbox" id="mBolodepote">Bolo de Pote<br>

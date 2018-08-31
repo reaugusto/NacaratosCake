@@ -11,6 +11,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var imagem = document.getElementById("imagem");
 var file;
+var campo;
 
 //adiciona a imagem no storage
 imagem.addEventListener('change', function(e) {
@@ -28,19 +29,22 @@ imagem.addEventListener('change', function(e) {
            )*/
 });
 
-function writeUserData() {
+function writeUserData() { //tudo pronto
     if(document.getElementById("nomebolo").value.length){
         firebase.database().ref(document.getElementById("tipo").value+ '/' + document.getElementById("nomebolo").value).set({
             sabor: document.getElementById("sabor").value,
             recheio: document.getElementById("recheio").value,
             cobertura : document.getElementById("cobertura").value
         });
-        //Create a storage ref
         var storageRef = firebase.storage().ref('imagens/' + document.getElementById("nomebolo").value + '.png');
-        //Upload file
         storageRef.put(file).then(function(snapshot) {
             alert('Uploaded a blob or file!');
         });  
+        document.getElementById("nomebolo").value = "";
+        document.getElementById("sabor").value = "";
+        document.getElementById("recheio").value = "";
+        document.getElementById("cobertura").value = "";
+        document.getElementById("imagem").value = "";
     }else{
         alert("Campo de nome vazio!");
     }
@@ -101,6 +105,19 @@ function buscaComida(){
     document.getElementById("buscaproduto").value = "";//ERRO AQUI
 }
 
+function mostraComida(){
+    var ref = database.ref("bolo/");
+    campo = document.getElementById("mostraTodosBolos");
+    ref.on('value',gotData,errData);
+    var ref = database.ref("cupcake/");
+    campo = document.getElementById("mostraTodosCupcakes");
+    ref.on('value',gotData,errData);
+    var ref = database.ref("bolo de pote/");
+    campo = document.getElementById("mostraTodosBolosdepote");
+    ref.on('value',gotData,errData);
+    
+}
+
 
 //MONTE O SEU
 
@@ -135,9 +152,19 @@ function writeSelfService(){
 }
 
 function buscaSelfService() {
-    var ref = database.ref("monteoseu/mSabor");
+    ref = database.ref("monteoseu/mSabor");
+    campo = document.getElementById("buscaSabores");
+    ref.on('value',gotData,errData);
+    
+    ref = database.ref("monteoseu/mRecheio");
+    campo = document.getElementById("buscaRecheios");
+    ref.on('value',gotData,errData);
+    
+    ref = database.ref("monteoseu/mCobertura");
+    campo = document.getElementById("buscaCoberturas");
     ref.on('value',gotData,errData);
 }
+
 
 function gotData(data){
     var names = data.val();
@@ -147,7 +174,6 @@ function gotData(data){
         var k = keys[i];
         var li = document.createElement('li');
         li.append(k);
-        var campo = document.getElementById("buscaSabores");
         campo.appendChild(li);
     }
 }
