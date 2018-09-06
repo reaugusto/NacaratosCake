@@ -1,3 +1,5 @@
+//https://stackoverflow.com/questions/41305051/how-do-i-make-a-firebase-form
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCVFt-wU_Ap8hNj3YUrJCq7CFXA7TYiOc0",
@@ -12,9 +14,10 @@ var database = firebase.database();
 var imagem = document.getElementById("imagem");
 var file;
 var campo;
+var buscaMonte;
 
 //adiciona a imagem no storage
-imagem.addEventListener('change', function(e) {
+imagem.addEventListener('change', function(e) { //no momento de upload, pega o evento e guarda em uma variavel que sera depois o parametro passado para salvar no storage
     //Get file
     file = e.target.files[0];
     /*task.on('state_changed',
@@ -75,13 +78,16 @@ function updateUserData() {
             recheio: document.getElementById("tbRecheio").value,
             cobertura : document.getElementById("tbCobertura").value
         });
-        deleteUserData();
-        alert("Alterado com sucesso!");
+        if(document.getElementById("tbNome").value != busca){
+        deleteUserData();//ARRUMAR ERRO AQUI
+        }
+        console.log(document.getElementById("tbNome").value);
+        console.log(busca);
     }else{alert("Campo nome vazio!")}
 }
 
 function deleteUserData(){
-    database.ref(document.getElementById("tipoBusca").value + '/' + busca).remove();
+    database.ref(document.getElementById("tipoBusca").value + '/' + busca).remove(); //ARRUMAR ERRO AQUI
 
     //apagar a imagem relacionada no storage tb (storageRef nome do bolo.remove() )
 
@@ -109,13 +115,14 @@ function mostraComida(){
     var ref = database.ref("bolo/");
     campo = document.getElementById("mostraTodosBolos");
     ref.on('value',gotData,errData);
-    var ref = database.ref("cupcake/");
+
+    ref = database.ref("cupcake/");
     campo = document.getElementById("mostraTodosCupcakes");
     ref.on('value',gotData,errData);
-    var ref = database.ref("bolo de pote/");
+
+    ref = database.ref("bolo de pote/");
     campo = document.getElementById("mostraTodosBolosdepote");
     ref.on('value',gotData,errData);
-    
 }
 
 
@@ -151,15 +158,15 @@ function writeSelfService(){
     }
 }
 
-function buscaSelfService() {
-    ref = database.ref("monteoseu/mSabor");
+function mostraTodosSelfService() {
+    var ref = database.ref("monteoseu/mSabor");
     campo = document.getElementById("buscaSabores");
     ref.on('value',gotData,errData);
-    
+
     ref = database.ref("monteoseu/mRecheio");
     campo = document.getElementById("buscaRecheios");
     ref.on('value',gotData,errData);
-    
+
     ref = database.ref("monteoseu/mCobertura");
     campo = document.getElementById("buscaCoberturas");
     ref.on('value',gotData,errData);
@@ -168,13 +175,15 @@ function buscaSelfService() {
 
 function gotData(data){
     var names = data.val();
+    console.log(campo);
     var keys = Object.keys(names);
     console.log("keys: "+keys);
     for (var i=0;i<keys.length;i++){
         var k = keys[i];
         var li = document.createElement('li');
         li.append(k);
-        campo.appendChild(li);
+
+        campo.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
     }
 }
 
@@ -183,8 +192,40 @@ function errData(err){
     console.log(err);
 }
 
+function buscaSelfService(){
+    buscaMonte = document.getElementById("buscaMonteOSeu").value;
+    var ref = database.ref("monteoseu/m" + document.getElementById("tipoMonte").value);
+    ref.orderByKey().equalTo(document.getElementById("buscaMonteOSeu").value).on("child_added", function(snapshot) {
+        document.getElementById("buscaMonteAlterar").value = document.getElementById("buscaMonteOSeu").value;
+        document.getElementById("aBolo").checked = snapshot.val().bolo;
+        document.getElementById("aCupcake").checked = snapshot.val().cupcake;
+        document.getElementById("aBolodepote").checked = snapshot.val().bolodepote;
+    });
+}
 
+function deletaSelfService(){
+    var ref = database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + document.getElementById("buscaMonteAlterar").value);
+    ref.remove();//ARRUMAR ERRO AQUI
+    
+    document.getElementById("buscaMonteAlterar").value = "";//AQUI
+}
 
-/*function salvaSelfService(){
-
-}*/
+function salvaSelfService(){
+    database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + document.getElementById("buscaMonteAlterar").value).set({
+        bolo: document.getElementById("aBolo").checked,
+        cupcake: document.getElementById("aCupcake").checked,
+        bolodepote: document.getElementById("aBolodepote").checked
+    });
+    console.log("buscaMonte: "+buscaMonte);
+    console.log("Campo busca: "+document.getElementById("buscaMonteAlterar").value);
+    if(document.getElementById("buscaMonteAlterar").value != buscaMonte){
+    database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + buscaMonte).remove();
+    }
+    
+    
+    
+    document.getElementById("buscaMonteAlterar").value = "";//AQUI
+    document.getElementById("aBolo").checked = false;
+    document.getElementById("aCupcake").checked = false;
+    document.getElementById("aBolodepote").checked = false;
+}

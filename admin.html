@@ -78,40 +78,36 @@
         <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
         <button onclick="writeSelfService()">Cadastrar</button><br><hr>
 
-        Buscar: <input type="text" id="buscaMonteOSeu"><br><br>
-        <button onclick="buscaSelfService()">Mostrar todos</button><br><br>
+        <select id="tipoMonte">
+            <option value="Sabor">Sabor</option>
+            <option value="Recheio">Recheio</option>
+            <option value="Cobertura">Cobertura</option>
+        </select><br><br>
+        Buscar: <input type="text" id="buscaMonteOSeu">
+        <button onclick="buscaSelfService()">Buscar</button><br><br>
+        <button onclick="mostraTodosSelfService()">Mostrar todos</button><br><br>
+
 
 
         Sabores: 
         <ol id="buscaSabores">
         </ol><br>
         Recheios:
-        <ul id="buscaRecheios">
-        </ul><br>
+        <ol id="buscaRecheios">
+        </ol><br>
         Coberturas:
-        <ul id="buscaCoberturas">
-        </ul><br><hr>
+        <ol id="buscaCoberturas">
+        </ol><br><hr>
 
 
-        Sabor:<br>
-        <input type="text" id="buscaMonteSabor"><br><!--tera uma lista da qual, quando clicado, ira popular estes inputs e checkboxes-->
-        <input type="checkbox" id="mBolo">Bolo<br>
-        <input type="checkbox" id="mCupcake">Cupcake<br>
-        <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
+        Alterar:<br>
+        <input type="text" id="buscaMonteAlterar"><br><!--tera uma lista da qual, quando clicado, ira popular estes inputs e checkboxes-->
+        <input type="checkbox" id="aBolo">Bolo<br>
+        <input type="checkbox" id="aCupcake">Cupcake<br>
+        <input type="checkbox" id="aBolodepote">Bolo de Pote<br>
 
-        Recheio:<br>
-        <input type="text" id="buscaMonteRecheio"><br>
-        <input type="checkbox" id="mBolo">Bolo<br>
-        <input type="checkbox" id="mCupcake">Cupcake<br>
-        <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
-
-        Cobertura:<br>
-        <input type="text" id="buscaMonteCobertura"><br>
-        <input type="checkbox" id="mBolo">Bolo<br>
-        <input type="checkbox" id="mCupcake">Cupcake<br>
-        <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
-
-        <button onclick="salvaSelfService()"></button><!--salva no banco as alteracoes feitas no sabor-->
+        <button onclick="salvaSelfService()">Alterar</button><!--salva no banco as alteracoes feitas no sabor-->
+        <button onclick="deletaSelfService()">Deletar</button>
 
         <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
         <script src="Js/admin.js"></script>
