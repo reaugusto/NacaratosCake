@@ -53,6 +53,20 @@ function writeUserData() { //tudo pronto
     }
 }
 
+function updateUserData(){
+    if (document.getElementById("tbNome").value.length){
+        var ref = database.ref(document.getElementById("tipoBusca").value);
+        
+        var child = ref.child(busca);
+        child.once('value', function(snapshot) {
+            ref.child(document.getElementById("tbNome").value).set(snapshot.val());
+            child.remove();
+        });
+    }else{alert("Campo nome vazio!")}
+}
+
+
+
 function updateUserData() {
     //como nao ha jeito de atualizar a key, devera apagar o nome e criar outro logo em seguida para alterar o nome do produto
     //storageRef.child(document.getElementById("imagem"))
@@ -79,7 +93,7 @@ function updateUserData() {
             cobertura : document.getElementById("tbCobertura").value
         });
         if(document.getElementById("tbNome").value != busca){
-        deleteUserData();//ARRUMAR ERRO AQUI
+            deleteUserData();//ARRUMAR ERRO AQUI
         }
         console.log(document.getElementById("tbNome").value);
         console.log(busca);
@@ -206,7 +220,7 @@ function buscaSelfService(){
 function deletaSelfService(){
     var ref = database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + document.getElementById("buscaMonteAlterar").value);
     ref.remove();//ARRUMAR ERRO AQUI
-    
+
     document.getElementById("buscaMonteAlterar").value = "";//AQUI
 }
 
@@ -219,11 +233,11 @@ function salvaSelfService(){
     console.log("buscaMonte: "+buscaMonte);
     console.log("Campo busca: "+document.getElementById("buscaMonteAlterar").value);
     if(document.getElementById("buscaMonteAlterar").value != buscaMonte){
-    database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + buscaMonte).remove();
+        database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + buscaMonte).remove();
     }
-    
-    
-    
+
+
+
     document.getElementById("buscaMonteAlterar").value = "";//AQUI
     document.getElementById("aBolo").checked = false;
     document.getElementById("aCupcake").checked = false;
