@@ -55,48 +55,29 @@ function writeUserData() { //tudo pronto
 
 function updateUserData(){
     if (document.getElementById("tbNome").value.length){
-        var ref = database.ref(document.getElementById("tipoBusca").value);
-        
-        var child = ref.child(busca);
-        child.once('value', function(snapshot) {
-            ref.child(document.getElementById("tbNome").value).set(snapshot.val());
-            child.remove();
-        });
-    }else{alert("Campo nome vazio!")}
-}
-
-
-
-function updateUserData() {
-    //como nao ha jeito de atualizar a key, devera apagar o nome e criar outro logo em seguida para alterar o nome do produto
-    //storageRef.child(document.getElementById("imagem"))
-    if (document.getElementById("tbNome").value.length){
-        /*if(document.getElementById("tbNome").value != document.getElementById("buscaproduto").value){//má pratica, devera procurar entre todos no banco em vez de usar o que foi escrito no campo buscao como referencia, ERROR.
-            var ref = database.ref();
-            var child = ref.child(document.getElementById("buscaproduto").value);
-            child.once('value', function(snapshot) {    
-                ref.child(document.getElementById("tbNome").value).set(snapshot.val());
-                child.remove();*/
-        /*var ref = database.ref(document.getElementById("tipoBusca").value);
-            ref.child(document.getElementById("tbNome").value).once('value').then(function(snap) {
-                var data = snap.val();
-                var update = {};
-                update[document.getElementById("buscaproduto").value] = null;
-                update[document.getElementById("tbNome").value] = data;
-                return ref.update(update);
+        if(busca != document.getElementById("tbNome").value){
+            var ref = database.ref(document.getElementById("tipoBusca").value);
+            
+            firebase.database().ref(document.getElementById("tipoBusca").value + '/' + busca).set({
+                sabor: document.getElementById("tbSabor").value,
+                recheio: document.getElementById("tbRecheio").value,
+                cobertura : document.getElementById("tbCobertura").value
             });
-            }else{}*/   
+            var child = ref.child(busca);
+            
+            child.once('value', function(snapshot) {
+                ref.child(document.getElementById("tbNome").value).set(snapshot.val());
+                child.remove();
+            });
 
-        firebase.database().ref(document.getElementById("tipoBusca").value + '/' + document.getElementById("tbNome").value).set({
-            sabor: document.getElementById("tbSabor").value,
-            recheio: document.getElementById("tbRecheio").value,
-            cobertura : document.getElementById("tbCobertura").value
-        });
-        if(document.getElementById("tbNome").value != busca){
-            deleteUserData();//ARRUMAR ERRO AQUI
         }
-        console.log(document.getElementById("tbNome").value);
-        console.log(busca);
+        else{
+            firebase.database().ref(document.getElementById("tipoBusca").value + '/' + busca).set({
+                sabor: document.getElementById("tbSabor").value,
+                recheio: document.getElementById("tbRecheio").value,
+                cobertura : document.getElementById("tbCobertura").value
+            });
+        }
     }else{alert("Campo nome vazio!")}
 }
 
@@ -128,15 +109,15 @@ function buscaComida(){
 function mostraComida(){
     var ref = database.ref("bolo/");
     campo = document.getElementById("mostraTodosBolos");
-    ref.on('value',gotData,errData);
+    ref.once('value',gotData,errData);
 
     ref = database.ref("cupcake/");
     campo = document.getElementById("mostraTodosCupcakes");
-    ref.on('value',gotData,errData);
+    ref.once('value',gotData,errData);
 
     ref = database.ref("bolo de pote/");
     campo = document.getElementById("mostraTodosBolosdepote");
-    ref.on('value',gotData,errData);
+    ref.once('value',gotData,errData);
 }
 
 
@@ -225,21 +206,25 @@ function deletaSelfService(){
 }
 
 function salvaSelfService(){
-    database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + document.getElementById("buscaMonteAlterar").value).set({
-        bolo: document.getElementById("aBolo").checked,
-        cupcake: document.getElementById("aCupcake").checked,
-        bolodepote: document.getElementById("aBolodepote").checked
-    });
-    console.log("buscaMonte: "+buscaMonte);
-    console.log("Campo busca: "+document.getElementById("buscaMonteAlterar").value);
-    if(document.getElementById("buscaMonteAlterar").value != buscaMonte){
-        database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + buscaMonte).remove();
+    if(buscaMonte != document.getElementById("buscaMonteAlterar").value){
+        var ref = database.ref("monteoseu/m" + document.getElementById("tipoMonte").value);
+        
+        database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + buscaMonte).set({
+            bolo: document.getElementById("aBolo").checked,
+            cupcake: document.getElementById("aCupcake").checked,
+            bolodepote: document.getElementById("aBolodepote").checked
+        });
+        
+        var child = ref.child(buscaMonte);
+        child.once('value', function(snapshot) {
+            ref.child(document.getElementById("buscaMonteAlterar").value).set(snapshot.val());
+            child.remove();
+        });
+    }else{
+        database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + buscaMonte).set({
+            bolo: document.getElementById("aBolo").checked,
+            cupcake: document.getElementById("aCupcake").checked,
+            bolodepote: document.getElementById("aBolodepote").checked
+        });
     }
-
-
-
-    document.getElementById("buscaMonteAlterar").value = "";//AQUI
-    document.getElementById("aBolo").checked = false;
-    document.getElementById("aCupcake").checked = false;
-    document.getElementById("aBolodepote").checked = false;
 }
