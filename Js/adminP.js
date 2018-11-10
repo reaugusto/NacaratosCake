@@ -83,7 +83,7 @@ function updateUserData() {
 
     
     if (document.getElementById("tbNome").value != busca){
-        database.ref(tipoBusca+'/'+busca).remove();
+        ref.remove();
         updates[tipoBusca + '/' + document.getElementById("tbNome").value] = postData;
         return firebase.database().ref().update(updates);
     } else {
@@ -98,8 +98,6 @@ function deleteUserData(){
     database.ref(tipoBusca+'/'+busca).remove();
     //apagar a imagem relacionada no storage tb (storageRef nome do bolo.remove() )
 }
-
-
 
 function mostraComida(){
     var ref = database.ref("bolo/");
@@ -133,136 +131,4 @@ function mostraComida(){
     });
     
     //dar disable aqui no botao logo apos para nao criar listas indefinidamente
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//MONTE O SEU
-
-function writeSelfService(){
-    //console.log(document.getElementById("mBolo").checked); //var monteSabor = document.getElementById("monteSabor").checked;
-    //console.log(document.getElementById("mCupcake").checked); //var monteRecheio = document.getElementById("monteRecheio").checked;
-    //console.log(document.getElementById("mBolodepote").checked); //var monteCobertura = document.getElementById("monteCobertura").checked;
-
-    if(document.getElementById("monteSabor").value.length){//trata a condicao de o campo estar vazio
-        database.ref("monteoseu/mSabor/" + document.getElementById("monteSabor").value).set({
-            bolo: document.getElementById("mBolo").checked,
-            cupcake: document.getElementById("mCupcake").checked,
-            bolodepote: document.getElementById("mBolodepote").checked
-        });
-    }
-
-    if(document.getElementById("monteRecheio").value.length){
-        database.ref("monteoseu/mRecheio/" + document.getElementById("monteRecheio").value).set({
-            bolo: document.getElementById("mBolo").checked,
-            cupcake: document.getElementById("mCupcake").checked,
-            bolodepote: document.getElementById("mBolodepote").checked
-        });
-    }
-
-    if(document.getElementById("monteCobertura").value.length){
-        database.ref("monteoseu/mCobertura/" + document.getElementById("monteCobertura").value).set({
-            bolo: document.getElementById("mBolo").checked,
-            cupcake: document.getElementById("mCupcake").checked,
-            bolodepote: document.getElementById("mBolodepote").checked
-        });
-    }
-}
-
-function mostraTodosSelfService() {
-    var ref = database.ref("monteoseu/mSabor");
-    campo = document.getElementById("buscaSabores");
-    ref.on('value',gotData,errData);
-
-    ref = database.ref("monteoseu/mRecheio");
-    campo = document.getElementById("buscaRecheios");
-    ref.on('value',gotData,errData);
-
-    ref = database.ref("monteoseu/mCobertura");
-    campo = document.getElementById("buscaCoberturas");
-    ref.on('value',gotData,errData);
-}
-
-
-function gotData(data){
-    var names = data.val();
-    console.log(campo);
-    var keys = Object.keys(names);
-    console.log("keys: "+keys);
-    for (var i=0;i<keys.length;i++){
-        var k = keys[i];
-        var li = document.createElement('li');
-        li.append(k);
-
-        campo.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
-    }
-}
-
-function errData(err){
-    console.log('Error!');
-    console.log(err);
-}
-
-function buscaSelfService(){
-    buscaMonte = document.getElementById("buscaMonteOSeu").value;
-    var ref = database.ref("monteoseu/m" + document.getElementById("tipoMonte").value);
-    ref.orderByKey().equalTo(document.getElementById("buscaMonteOSeu").value).on("child_added", function(snapshot) {
-        document.getElementById("buscaMonteAlterar").value = document.getElementById("buscaMonteOSeu").value;
-        document.getElementById("aBolo").checked = snapshot.val().bolo;
-        document.getElementById("aCupcake").checked = snapshot.val().cupcake;
-        document.getElementById("aBolodepote").checked = snapshot.val().bolodepote;
-    });
-}
-
-function deletaSelfService(){
-    var ref = database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + document.getElementById("buscaMonteAlterar").value);
-    ref.remove();//ARRUMAR ERRO AQUI
-
-    document.getElementById("buscaMonteAlterar").value = "";//AQUI
-}
-
-function salvaSelfService(){
-    if(buscaMonte != document.getElementById("buscaMonteAlterar").value){
-        var ref = database.ref("monteoseu/m" + document.getElementById("tipoMonte").value);
-
-        database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + buscaMonte).set({
-            bolo: document.getElementById("aBolo").checked,
-            cupcake: document.getElementById("aCupcake").checked,
-            bolodepote: document.getElementById("aBolodepote").checked
-        });
-
-        var child = ref.child(buscaMonte);
-        child.once('value', function(snapshot) {
-            ref.child(document.getElementById("buscaMonteAlterar").value).set(snapshot.val());
-            child.remove();
-        });
-    }else{
-        database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + buscaMonte).set({
-            bolo: document.getElementById("aBolo").checked,
-            cupcake: document.getElementById("aCupcake").checked,
-            bolodepote: document.getElementById("aBolodepote").checked
-        });
-    }
 }
