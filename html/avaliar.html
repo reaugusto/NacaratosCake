@@ -1,0 +1,47 @@
+<html>
+    <head>
+
+    </head>
+    
+    <body>
+        <form action="../html/resposta.html" method="post">
+            <label>Nome: </label>
+            <input name="nome" required="required" type="text"><br>
+            
+            <label>E-mail: </label>
+            <input name="email" required="required" type="email"><br>
+            
+            <label>Data de Nascimento: </label>
+            <input><br>
+            
+            <label>Assunto: </label>
+            <select>
+                <option value="pedidos">Pedidos</option>
+                <option value="perguntas">Perguntas</option>
+                <option value="reclamacoes">Reclamações</option>
+                <option value="sugestoes">Sugestões</option>
+                <option value="Outros">Outros</option>
+            </select><br>
+            
+            <label>Nota: </label>
+            <input name="nota" value="1" type="radio">1
+            <input name="nota" value="2" type="radio">2
+            <input name="nota" value="3" type="radio">3
+            <input name="nota" value="4" type="radio">4
+            <input name="nota" value="5" type="radio">5
+            <input name="nota" value="6" type="radio">6
+            <input name="nota" value="7" type="radio">7
+            <input name="nota" value="8" type="radio">8
+            <input name="nota" value="9" type="radio">9
+            <input name="nota" value="10" type="radio">10<br>
+            
+            <input type="submit" onclick="enviaForm()" value="Enviar">
+        </form>
+        
+    </body>
+    <script>
+     function enviaForm(){
+         
+     }
+    </script>
+</html>

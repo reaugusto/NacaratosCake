@@ -32,9 +32,11 @@ imagem.addEventListener('change', function(e) { //no momento de upload, pega o e
            )*/
 });
 
-function writeUserData() { //tudo pronto
+function writeUserData() {
+    tipo = document.getElementById("tipo").value;
+
     if(document.getElementById("nomebolo").value.length){
-        firebase.database().ref(document.getElementById("tipo").value+ '/' + document.getElementById("nomebolo").value).set({
+        var refBasicos = database.ref(tipo + '/' + document.getElementById("nomebolo").value).set({
             sabor: document.getElementById("sabor").value,
             recheio: document.getElementById("recheio").value,
             cobertura : document.getElementById("cobertura").value
@@ -43,6 +45,8 @@ function writeUserData() { //tudo pronto
         storageRef.put(file).then(function(snapshot) {
             alert('Uploaded a blob or file!');
         });  
+
+
         document.getElementById("nomebolo").value = "";
         document.getElementById("sabor").value = "";
         document.getElementById("recheio").value = "";
@@ -53,50 +57,11 @@ function writeUserData() { //tudo pronto
     }
 }
 
-function updateUserData(){
-    if (document.getElementById("tbNome").value.length){
-        if(busca != document.getElementById("tbNome").value){
-            var ref = database.ref(document.getElementById("tipoBusca").value);
-            
-            firebase.database().ref(document.getElementById("tipoBusca").value + '/' + busca).set({
-                sabor: document.getElementById("tbSabor").value,
-                recheio: document.getElementById("tbRecheio").value,
-                cobertura : document.getElementById("tbCobertura").value
-            });
-            var child = ref.child(busca);
-            
-            child.once('value', function(snapshot) {
-                ref.child(document.getElementById("tbNome").value).set(snapshot.val());
-                child.remove();
-            });
-
-        }
-        else{
-            firebase.database().ref(document.getElementById("tipoBusca").value + '/' + busca).set({
-                sabor: document.getElementById("tbSabor").value,
-                recheio: document.getElementById("tbRecheio").value,
-                cobertura : document.getElementById("tbCobertura").value
-            });
-        }
-    }else{alert("Campo nome vazio!")}
-}
-
-function deleteUserData(){
-    database.ref(document.getElementById("tipoBusca").value + '/' + busca).remove(); //ARRUMAR ERRO AQUI
-
-    //apagar a imagem relacionada no storage tb (storageRef nome do bolo.remove() )
-
-    document.getElementById("tbNome").value = "";//ERRO AQUI
-    document.getElementById("tbSabor").value = "";//AQUI
-    document.getElementById("tbRecheio").value = "";//AQUI
-    document.getElementById("tbCobertura").value = "";//AQUI
-}
-
 function buscaComida(){
     busca = document.getElementById("buscaproduto").value;
-    var dados;
-    //document.getElementById("tbSabor").textContent = busca;
-    var ref = firebase.database().ref(document.getElementById("tipoBusca").value);
+    tipoBusca = document.getElementById("tipoBusca").value;
+
+    var ref = database.ref(tipoBusca);
     ref.orderByKey().equalTo(busca).on("child_added", function(snapshot) {
         document.getElementById("tbNome").value = busca;
         document.getElementById("tbSabor").value = snapshot.val().sabor;
@@ -106,19 +71,92 @@ function buscaComida(){
     document.getElementById("buscaproduto").value = "";//ERRO AQUI
 }
 
+
+function updateUserData() {
+    var ref = database.ref(tipoBusca + '/' + busca);
+    var updates = {};
+    var postData = {
+        sabor: document.getElementById("tbSabor").value,
+        recheio: document.getElementById("tbRecheio").value,
+        cobertura : document.getElementById("tbCobertura").value
+    };
+
+    
+    if (document.getElementById("tbNome").value != busca){
+        database.ref(tipoBusca+'/'+busca).remove();
+        updates[tipoBusca + '/' + document.getElementById("tbNome").value] = postData;
+        return firebase.database().ref().update(updates);
+    } else {
+        
+        updates[tipoBusca + '/' + document.getElementById("tbNome").value] = postData;
+        return firebase.database().ref().update(updates);
+    }
+
+}
+
+function deleteUserData(){
+    database.ref(tipoBusca+'/'+busca).remove();
+    //apagar a imagem relacionada no storage tb (storageRef nome do bolo.remove() )
+}
+
+
+
 function mostraComida(){
     var ref = database.ref("bolo/");
-    campo = document.getElementById("mostraTodosBolos");
-    ref.once('value',gotData,errData);
-
+    campo1 = document.getElementById("mostraTodosBolos");
+    ref.on('child_added', function(data){
+        console.log(data.key);
+        var k = data.key;
+        var li = document.createElement('li');
+        li.append(k);
+        campo1.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
+    });
+    
     ref = database.ref("cupcake/");
-    campo = document.getElementById("mostraTodosCupcakes");
-    ref.once('value',gotData,errData);
-
+    campo2 = document.getElementById("mostraTodosCupcakes");
+    ref.on('child_added', function(data){
+        console.log(data.key);
+        var k = data.key;
+        var li = document.createElement('li');
+        li.append(k);
+        campo2.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
+    });
+    
     ref = database.ref("bolo de pote/");
-    campo = document.getElementById("mostraTodosBolosdepote");
-    ref.once('value',gotData,errData);
+    campo3 = document.getElementById("mostraTodosBolosdepote");
+    ref.on('child_added', function(data){
+        console.log(data.key);
+        var k = data.key;
+        var li = document.createElement('li');
+        li.append(k);
+        campo3.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
+    });
+    
+    //dar disable aqui no botao logo apos para nao criar listas indefinidamente
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //MONTE O SEU
@@ -208,13 +246,13 @@ function deletaSelfService(){
 function salvaSelfService(){
     if(buscaMonte != document.getElementById("buscaMonteAlterar").value){
         var ref = database.ref("monteoseu/m" + document.getElementById("tipoMonte").value);
-        
+
         database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + buscaMonte).set({
             bolo: document.getElementById("aBolo").checked,
             cupcake: document.getElementById("aCupcake").checked,
             bolodepote: document.getElementById("aBolodepote").checked
         });
-        
+
         var child = ref.child(buscaMonte);
         child.once('value', function(snapshot) {
             ref.child(document.getElementById("buscaMonteAlterar").value).set(snapshot.val());
