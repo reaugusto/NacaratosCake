@@ -11,6 +11,7 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
+var storage = firebase.storage();
 var imagem = document.getElementById("imagem");
 var file;
 var campo;
@@ -41,7 +42,7 @@ function writeUserData() {
             recheio: document.getElementById("recheio").value,
             cobertura : document.getElementById("cobertura").value
         });
-        var storageRef = firebase.storage().ref('imagens/' + document.getElementById("nomebolo").value + '.png');
+        var storageRef = firebase.storage().ref('imagens/'+ tipo + "/" + document.getElementById("nomebolo").value + '.png');
         storageRef.put(file).then(function(snapshot) {
             alert('Uploaded a blob or file!');
         });  
@@ -57,9 +58,15 @@ function writeUserData() {
     }
 }
 
-function buscaComida(){
-    busca = document.getElementById("buscaproduto").value;
-    tipoBusca = document.getElementById("tipoBusca").value;
+function buscaComida(fromClick, k,campo){
+    if(fromClick){
+        busca = k;
+        tipoBusca = campo;
+    } else {
+        busca = document.getElementById("buscaproduto").value;
+        tipoBusca = document.getElementById("tipoBusca").value;
+    }
+
 
     var ref = database.ref(tipoBusca);
     ref.orderByKey().equalTo(busca).on("child_added", function(snapshot) {
@@ -81,13 +88,13 @@ function updateUserData() {
         cobertura : document.getElementById("tbCobertura").value
     };
 
-    
+
     if (document.getElementById("tbNome").value != busca){
         ref.remove();
         updates[tipoBusca + '/' + document.getElementById("tbNome").value] = postData;
         return firebase.database().ref().update(updates);
     } else {
-        
+
         updates[tipoBusca + '/' + document.getElementById("tbNome").value] = postData;
         return firebase.database().ref().update(updates);
     }
@@ -97,6 +104,11 @@ function updateUserData() {
 function deleteUserData(){
     database.ref(tipoBusca+'/'+busca).remove();
     //apagar a imagem relacionada no storage tb (storageRef nome do bolo.remove() )
+    storage.ref('imagens/'+ tipoBusca + '/' + busca + '.png').delete().then(function() {
+        console.log("File deleted successfully");
+    }).catch(function(error) {
+        console.log("Uh-oh, an error occurred!");
+    });
 }
 
 function mostraComida(){
@@ -106,29 +118,44 @@ function mostraComida(){
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
+
+        li.onclick = function (){
+            buscaComida(true,k,"bolo");
+        };
+
         li.append(k);
         campo1.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
     });
-    
+
     ref = database.ref("cupcake/");
     campo2 = document.getElementById("mostraTodosCupcakes");
     ref.on('child_added', function(data){
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
+
+        li.onclick = function (){
+            buscaComida(true,k,"cupcake");
+        };
+
         li.append(k);
         campo2.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
     });
-    
+
     ref = database.ref("bolo de pote/");
     campo3 = document.getElementById("mostraTodosBolosdepote");
     ref.on('child_added', function(data){
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
+
+        li.onclick = function (){
+            buscaComida(true,k,"bolo de pote");
+        };
+
         li.append(k);
         campo3.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
     });
-    
+
     //dar disable aqui no botao logo apos para nao criar listas indefinidamente
 }

@@ -1,4 +1,3 @@
-//MONTE O SEU
 var config = {
     apiKey: "AIzaSyCVFt-wU_Ap8hNj3YUrJCq7CFXA7TYiOc0",
     authDomain: "nacarato-s.firebaseapp.com",
@@ -9,6 +8,7 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
+var storage = firebase.storage();
 var imagem = document.getElementById("imagem"); // implementar imagem dos sabores posteriormente
 var file;
 var campo;
@@ -87,9 +87,13 @@ function buscaSelfService(){
 }
 
 function deletaSelfService(){
-    var ref = database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + document.getElementById("buscaMonteAlterar").value);
-    ref.remove();//ARRUMAR ERRO AQUI
-
+    var ref = database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + document.getElementById("buscaMonteAlterar").value).remove();
+    /*storage.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + document.getElementById("buscaMonteAlterar").value + '.png').delete().then(function() {
+        console.log("File deleted successfully");
+    }).catch(function(error) {
+        console.log("Uh-oh, an error occurred!");
+    });*/
+    
     document.getElementById("buscaMonteAlterar").value = "";//AQUI
 }
 
