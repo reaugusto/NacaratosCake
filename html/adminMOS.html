@@ -7,8 +7,8 @@
     <body>
         MONTE O SEU<br><br>
 
-        Sabor:<br>
-        <input type="text" id="monteSabor"><br>
+        Massa:<br>
+        <input type="text" id="monteMassa"><br>
         Recheio:<br>
         <input type="text" id="monteRecheio"><br>
         Cobertura:<br>
@@ -19,7 +19,7 @@
         <button onclick="writeSelfService()">Cadastrar</button><br><hr>
 
         <select id="tipoMonte">
-            <option value="Sabor">Sabor</option>
+            <option value="Massa">Massa</option>
             <option value="Recheio">Recheio</option>
             <option value="Cobertura">Cobertura</option>
         </select><br><br>
@@ -29,8 +29,8 @@
 
 
 
-        Sabores: 
-        <ol id="buscaSabores">
+        Massas: 
+        <ol id="buscaMassas">
         </ol><br>
         Recheios:
         <ol id="buscaRecheios">
@@ -41,12 +41,12 @@
 
 
         Alterar:<br>
-        <input type="text" id="buscaMonteAlterar"><br><!--tera uma lista da qual, quando clicado, ira popular estes inputs e checkboxes-->
+        <input type="text" id="buscaMonteAlterar"><br>
         <input type="checkbox" id="aBolo">Bolo<br>
         <input type="checkbox" id="aCupcake">Cupcake<br>
         <input type="checkbox" id="aBolodepote">Bolo de Pote<br>
 
-        <button onclick="salvaSelfService()">Alterar</button><!--salva no banco as alteracoes feitas no sabor-->
+        <button onclick="salvaSelfService()">Alterar</button>
         <button onclick="deletaSelfService()">Deletar</button>
 
         <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>

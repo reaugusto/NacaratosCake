@@ -98,7 +98,7 @@ function mostraProdutosBolo(){
             
             card = document.createElement("div");
             card.className = "bolo";
-            card.innerHTML = "<div class='col-sm-4 col-md-4 card'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().sabor+"</p><p>"+data.val().recheio+"</p></div></div></div>";
+            card.innerHTML = "<div class='col-sm-4 col-md-4 card'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
             divPai.appendChild(card);
             //colocando a imagem em um elemento da pagina
             
@@ -128,7 +128,7 @@ function mostraProdutosBolo(){
         
         console.log("nome: " + data.key);
         console.log("cobertura: " + data.val().cobertura);
-        console.log("sabor: " + data.val().sabor);
+        console.log("massa: " + data.val().massa);
         console.log("recheio: " + data.val().recheio);
         console.log(" ");
         
@@ -158,7 +158,7 @@ function mostraProdutosCupcake(){
             
             card = document.createElement("div");
             card.className = "cupcake";
-            card.innerHTML = "<div class='col-sm-4 col-md-4 card'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().sabor+"</p><p>"+data.val().recheio+"</p></div></div></div>";
+            card.innerHTML = "<div class='col-sm-4 col-md-4 card'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
             divPai.appendChild(card);
             
             //colocando a imagem em um elemento da pagina
@@ -187,7 +187,7 @@ function mostraProdutosCupcake(){
 
         console.log("nome: " + data.key);
         console.log("cobertura: " + data.val().cobertura);
-        console.log("sabor: " + data.val().sabor);
+        console.log("massa: " + data.val().massa);
         console.log("recheio: " + data.val().recheio);
         console.log(" ");
         //x[0].style.backgroundColor = "red"; //usar isso apenas se for por classe
@@ -216,7 +216,7 @@ function mostraProdutosBolodepote(){
             
             card = document.createElement("div");
             card.className = "pote";
-            card.innerHTML = "<div class='col-sm-4 col-md-4 card'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().sabor+"</p><p>"+data.val().recheio+"</p></div></div></div>";
+            card.innerHTML = "<div class='col-sm-4 col-md-4 card'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
             divPai.appendChild(card);
             
             //colocando a imagem em um elemento da pagina
@@ -245,7 +245,7 @@ function mostraProdutosBolodepote(){
 
         console.log("nome: " + data.key);
         console.log("cobertura: " + data.val().cobertura);
-        console.log("sabor: " + data.val().sabor);
+        console.log("massa: " + data.val().massa);
         console.log("recheio: " + data.val().recheio);
         console.log(" ");
         //x[0].style.backgroundColor = "red"; //usar isso apenas se for por classe
