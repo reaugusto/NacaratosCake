@@ -2,7 +2,7 @@
     <head>
         <title>Nacarato's Cake - Prontos</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
         CADASTRAR PRODUTO <br><br>
@@ -34,7 +34,7 @@
         Buscar:
         <input type="text" id="buscaproduto">
         <button onclick="buscaComida()">Buscar</button><br><br>
-        <button onclick="mostraComida()">Mostrar Todos</button><br><br>
+        <button onclick="mostraComida(this)">Mostrar Todos</button><br><br>
         Bolos:
         <ol id="mostraTodosBolos">
         </ol>
@@ -61,6 +61,11 @@
                     <td><input type="text" id="tbMassa"></td>
                     <td><input type="text" id="tbRecheio"></td>
                     <td><input type="text" id="tbCobertura"></td>
+                    <img id="fotoProduto">
+                </tr>
+                <tr>
+                    <img id="fotoProduto">
+                    <input type="file" id="fotoUpdate">
                 </tr>
             </tbody>
         </table><br>
@@ -70,6 +75,6 @@
         
 
         <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
-        <script src="Js/adminP.js"></script>
+        <script src="../Js/adminP.js"></script>
     </body>
 </html>

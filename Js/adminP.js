@@ -12,8 +12,13 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 var storage = firebase.storage();
+
 var imagem = document.getElementById("imagem");
+var novaFoto = document.getElementById("fotoUpdate");
+
 var file;
+var fileUpdate;
+
 var campo;
 var buscaMonte;
 
@@ -31,6 +36,17 @@ imagem.addEventListener('change', function(e) { //no momento de upload, pega o e
 
     }
            )*/
+});
+
+
+novaFoto.addEventListener('change', function(e) { //no momento de upload, pega o evento e guarda em uma variavel que sera depois o parametro passado para salvar no storage
+    var imageUpdate = document.getElementById("fotoProduto");
+    var fileReader = new FileReader();
+    //Get file
+    fileUpdate = e.target.files[0];
+    imageUpdate.src = "";
+    imageUpdate.style.display = "none";
+
 });
 
 function writeUserData() {
@@ -59,6 +75,8 @@ function writeUserData() {
 }
 
 function buscaComida(fromClick, k,campo){
+    var imageUpdate = document.getElementById("fotoProduto");
+
     if(fromClick){
         busca = k;
         tipoBusca = campo;
@@ -67,6 +85,16 @@ function buscaComida(fromClick, k,campo){
         tipoBusca = document.getElementById("tipoBusca").value;
     }
 
+
+
+    var pathReference = storage.ref('imagens/'+ tipoBusca +'/' + busca + ".png");
+
+    pathReference.getDownloadURL().then(function(url){
+        imageUpdate.src = url;
+        imageUpdate.height = "300";
+        imageUpdate.width = "300";
+        imageUpdate.style.display = "block";
+    });
 
     var ref = database.ref(tipoBusca);
     ref.orderByKey().equalTo(busca).on("child_added", function(snapshot) {
@@ -88,13 +116,20 @@ function updateUserData() {
         cobertura : document.getElementById("tbCobertura").value
     };
 
+    var storageRef = firebase.storage().ref('imagens/'+ tipoBusca + "/" + document.getElementById("tbNome").value + '.png');
+
+    if(fileUpdate){
+        storageRef.put(fileUpdate).then(function(snapshot) {
+            alert('Updated a blob or file!');
+        });
+    }
 
     if (document.getElementById("tbNome").value != busca){
         ref.remove();
         updates[tipoBusca + '/' + document.getElementById("tbNome").value] = postData;
+        storage.ref('imagens/'+ tipoBusca + '/' + busca + '.png').delete();
         return firebase.database().ref().update(updates);
     } else {
-
         updates[tipoBusca + '/' + document.getElementById("tbNome").value] = postData;
         return firebase.database().ref().update(updates);
     }
@@ -103,7 +138,7 @@ function updateUserData() {
 
 function deleteUserData(){
     database.ref(tipoBusca+'/'+busca).remove();
-    //apagar a imagem relacionada no storage tb (storageRef nome do bolo.remove() )
+    //apagar a imagem relacionada no storage
     storage.ref('imagens/'+ tipoBusca + '/' + busca + '.png').delete().then(function() {
         console.log("File deleted successfully");
     }).catch(function(error) {
@@ -111,7 +146,7 @@ function deleteUserData(){
     });
 }
 
-function mostraComida(){
+function mostraComida(botao){
     var ref = database.ref("bolo/");
     campo1 = document.getElementById("mostraTodosBolos");
     ref.on('child_added', function(data){
@@ -158,4 +193,5 @@ function mostraComida(){
     });
 
     //dar disable aqui no botao logo apos para nao criar listas indefinidamente
+    botao.disabled = true;
 }
