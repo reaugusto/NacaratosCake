@@ -38,7 +38,7 @@ function writeUserData() {
 
     if(document.getElementById("nomebolo").value.length){
         var refBasicos = database.ref(tipo + '/' + document.getElementById("nomebolo").value).set({
-            sabor: document.getElementById("sabor").value,
+            massa: document.getElementById("massa").value,
             recheio: document.getElementById("recheio").value,
             cobertura : document.getElementById("cobertura").value
         });
@@ -49,7 +49,7 @@ function writeUserData() {
 
 
         document.getElementById("nomebolo").value = "";
-        document.getElementById("sabor").value = "";
+        document.getElementById("massa").value = "";
         document.getElementById("recheio").value = "";
         document.getElementById("cobertura").value = "";
         document.getElementById("imagem").value = "";
@@ -71,7 +71,7 @@ function buscaComida(fromClick, k,campo){
     var ref = database.ref(tipoBusca);
     ref.orderByKey().equalTo(busca).on("child_added", function(snapshot) {
         document.getElementById("tbNome").value = busca;
-        document.getElementById("tbSabor").value = snapshot.val().sabor;
+        document.getElementById("tbMassa").value = snapshot.val().massa;
         document.getElementById("tbRecheio").value = snapshot.val().recheio;
         document.getElementById("tbCobertura").value = snapshot.val().cobertura;
     });
@@ -83,7 +83,7 @@ function updateUserData() {
     var ref = database.ref(tipoBusca + '/' + busca);
     var updates = {};
     var postData = {
-        sabor: document.getElementById("tbSabor").value,
+        massa: document.getElementById("tbMassa").value,
         recheio: document.getElementById("tbRecheio").value,
         cobertura : document.getElementById("tbCobertura").value
     };
