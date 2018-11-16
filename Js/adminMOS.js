@@ -15,8 +15,8 @@ var campo;
 var buscaMonte;
 
 function writeSelfService(){    //Pensar em colocar as checkboxes separada para cada uma das opcoes
-    if(document.getElementById("monteMassa").value.length){//trata a condicao de o campo estar vazio
-        database.ref("monteoseu/mMassa/" + document.getElementById("monteMassa").value).set({
+    if(document.getElementById("monteSabor").value.length){//trata a condicao de o campo estar vazio
+        database.ref("monteoseu/mSabor/" + document.getElementById("monteSabor").value).set({
             bolo: document.getElementById("mBolo").checked,
             cupcake: document.getElementById("mCupcake").checked,
             bolodepote: document.getElementById("mBolodepote").checked
@@ -61,8 +61,8 @@ function mostraTodosSelfService(){      //Talvez .once seja mais eficiente  //AQ
         campo2.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
     });
 
-    ref = database.ref("monteoseu/mMassa/");
-    campo3 = document.getElementById("buscaMassas");
+    ref = database.ref("monteoseu/mSabor/");
+    campo3 = document.getElementById("buscaSabores");
     ref.on('child_added', function(data){
         console.log(data.key);
         var k = data.key;

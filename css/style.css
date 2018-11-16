@@ -1,3 +1,11 @@
+.card1{
+    width: 10%;
+    height: 10%;
+    background-color: red;
+    border: 2px solid;
+    box-shadow: inset 0px 0px 40px 40px #DBA632;
+}
+
 html {
   scroll-behavior:smooth;
     overflow: scroll;
@@ -6,6 +14,9 @@ html {
 body{
     background-color: #4E1E10;
 }
+
+
+/* CSS relacionado barra do topo*/
 
 .nave {
     background-color: #4E1E10;
@@ -56,6 +67,8 @@ body{
     padding: 10px;
 }
 
+/* CSS relacionado do cabeçalho e home*/
+
 header {
     display: block;
     margin: 0 0 0 0;
@@ -88,6 +101,8 @@ header {
     
 }
 
+/* CSS relacionado a area de produtos*/
+
 .sobre {
     background: #4E1E10;
     height: 100%;
@@ -95,6 +110,22 @@ header {
     position: relative;
 
 }
+
+.sobre img{
+    width: 100%
+}
+
+.container-sobre{
+    margin-top: 10%;
+}
+
+.conteudo-sobre{
+    color: white;
+    font-size: 18px;
+}
+
+/* CSS relacionado a area de produtos*/
+
 .produtos {
     background: red;
     height: 100%;
@@ -125,14 +156,25 @@ header {
     font-style: oblique;
     color: white;
     text-decoration: none;
+    
 }
 
+.menu-produtos a:focus{
+    font-size: 24px;
+    font-style: oblique;
+    color: #D59310;
+    text-decoration: none;
+    background-color: whitesmoke;
+    padding: 15px 15px;
+}
 
 .menu-produtos a:hover{
     font-size: 24px;
     font-style: oblique;
     color: #D59310;
     text-decoration: none;
+    background-color: whitesmoke;
+    padding: 15px 15px;
 }
 
 .menu-produtos a:checked{
@@ -140,17 +182,25 @@ header {
     font-style: oblique;
     color: #D59310;
     text-decoration: none;
+    
+    
 }
 
 .conteudo-produtos{
     position: relative;
-    background-image: url(../img/fundo_produtos.png);
-    background-repeat: no-repeat;
+    background-color: whitesmoke;
     background-size: cover;
     height: 85%;
+    width: 100%;
     z-index: 4;
     top: 60px;
+    overflow-y: scroll;
+    padding: 20px;
     
+}
+
+.card{
+    display: inline-block;
 }
 
 .contato {
@@ -161,6 +211,8 @@ header {
     padding: 0;
     margin: 0;
 }
+
+/* CSS relacionado ao Menu*/
 
 .navbar {
     width: 80%;
@@ -178,13 +230,13 @@ header {
     position: absolute;
 }
 
-.me a{
+.navbar a{
     font-size: 24px;
     font-style: oblique;
     color: white; 
 }
 
-.me a:visited{
+.navbar a:visited{
     font-size: 24px;
     font-style: oblique;
     color: white;
@@ -192,26 +244,19 @@ header {
 }
 
 
-.me a:hover{
+.navbar a:hover{
     font-size: 28px;
     font-style: oblique;
     color: white;
     text-decoration: none;
 }
 
-.me a:checked{
+.navbar a:checked{
     font-size: 24px;
     font-style: oblique;
     color: white;
     text-decoration: none;
 }
-
-
-.container-sobre{
-    margin-top: 8%;
-}
-
-
 
 .affix {
     top: 50px;
@@ -224,6 +269,20 @@ header {
 .affix + .container-fluid {
     padding-top: 0px;
 }
+
+
+
+.contato {
+    background: #4E1E10;
+    height: 100%;
+    z-index: 1;
+    position: relative;
+
+}
+
+
+
+
 section{
     top: 50px;
 }
