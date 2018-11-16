@@ -8,7 +8,6 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-var storage = firebase.storage();
 var imagem = document.getElementById("imagem"); // implementar imagem dos sabores posteriormente
 var file;
 var campo;
@@ -40,13 +39,18 @@ function writeSelfService(){    //Pensar em colocar as checkboxes separada para 
     }
 }
 
-function mostraTodosSelfService(){      //Talvez .once seja mais eficiente  //AQUI
+function mostraTodosSelfService(botao){      //Talvez .once seja mais eficiente  //AQUI
     var ref = database.ref("monteoseu/mCobertura/");
     campo1 = document.getElementById("buscaCoberturas");
     ref.on('child_added', function(data){
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
+        
+        li.onclick = function (){
+            buscaSelfService(true,k,"Cobertura");
+        };
+        
         li.append(k);
         campo1.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
     });
@@ -57,6 +61,11 @@ function mostraTodosSelfService(){      //Talvez .once seja mais eficiente  //AQ
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
+
+        li.onclick = function (){
+            buscaSelfService(true,k,"Recheio");
+        };
+
         li.append(k);
         campo2.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
     });
@@ -67,19 +76,35 @@ function mostraTodosSelfService(){      //Talvez .once seja mais eficiente  //AQ
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
+        
+        li.onclick = function (){
+            buscaSelfService(true,k,"Massa");
+        };
+        
         li.append(k);
         campo3.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
     });
 
     //dar disable aqui no botao logo apos para nao criar listas indefinidamente
+    botao.disabled = true;
 }
 
-function buscaSelfService(){
-    buscaMonte = document.getElementById("buscaMonteOSeu").value;
-    tipoMonte = document.getElementById("tipoMonte").value;
+
+
+function buscaSelfService(foiClicado, key, campo){
+    
+    if(foiClicado){
+        tipoMonte = campo;
+        buscaMonte = key;
+    } else {
+        tipoMonte = document.getElementById("tipoMonte").value;
+        buscaMonte = document.getElementById("buscaMonteOSeu").value;
+    }
+
+
     var ref = database.ref("monteoseu/m" + tipoMonte);
-    ref.orderByKey().equalTo(document.getElementById("buscaMonteOSeu").value).on("child_added", function(snapshot) {
-        document.getElementById("buscaMonteAlterar").value = document.getElementById("buscaMonteOSeu").value;
+    ref.orderByKey().equalTo(buscaMonte).on("child_added", function(snapshot) {
+        document.getElementById("buscaMonteAlterar").value = buscaMonte;
         document.getElementById("aBolo").checked = snapshot.val().bolo;
         document.getElementById("aCupcake").checked = snapshot.val().cupcake;
         document.getElementById("aBolodepote").checked = snapshot.val().bolodepote;
@@ -88,12 +113,6 @@ function buscaSelfService(){
 
 function deletaSelfService(){
     var ref = database.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + document.getElementById("buscaMonteAlterar").value).remove();
-    /*storage.ref("monteoseu/m" + document.getElementById("tipoMonte").value + "/" + document.getElementById("buscaMonteAlterar").value + '.png').delete().then(function() {
-        console.log("File deleted successfully");
-    }).catch(function(error) {
-        console.log("Uh-oh, an error occurred!");
-    });*/
-    
     document.getElementById("buscaMonteAlterar").value = "";//AQUI
 }
 
