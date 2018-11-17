@@ -24,12 +24,12 @@ function cadastrar(){
 }
 
 function login(){
-    var email = document.getElementById("emailLogin").value;
-    var password = document.getElementById("passwordLogin").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
 
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function() {
-        window.location.href = "http://127.0.0.1:62872/html/adminP.html";
+        window.location.href = "acessoAdmin.html";
     })
         .catch(function(error) {
         // Handle Errors here.
