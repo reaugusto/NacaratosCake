@@ -98,7 +98,7 @@ function mostraProdutosBolo(){
             
             card = document.createElement("div");
             card.className = "bolo";
-            card.innerHTML = "<div class='col-sm-4 col-md-4 card'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
+            card.innerHTML = "<div class='col-sm-4 col-md-4 card card1'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
             divPai.appendChild(card);
             //colocando a imagem em um elemento da pagina
             
@@ -158,7 +158,7 @@ function mostraProdutosCupcake(){
             
             card = document.createElement("div");
             card.className = "cupcake";
-            card.innerHTML = "<div class='col-sm-4 col-md-4 card'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
+            card.innerHTML = "<div class='col-sm-4 col-md-4 card card1'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
             divPai.appendChild(card);
             
             //colocando a imagem em um elemento da pagina
@@ -216,7 +216,7 @@ function mostraProdutosBolodepote(){
             
             card = document.createElement("div");
             card.className = "pote";
-            card.innerHTML = "<div class='col-sm-4 col-md-4 card'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
+            card.innerHTML = "<div class='col-sm-4 col-md-4 card card1'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
             divPai.appendChild(card);
             
             //colocando a imagem em um elemento da pagina
@@ -251,3 +251,6 @@ function mostraProdutosBolodepote(){
         //x[0].style.backgroundColor = "red"; //usar isso apenas se for por classe
     });
 }
+
+// API de Mapa -19.761057, -47.908803
+

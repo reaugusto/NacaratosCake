@@ -1,17 +1,31 @@
-.card1{
-    width: 10%;
-    height: 10%;
-    background-color: red;
-    border: 2px solid;
-    box-shadow: inset 0px 0px 40px 40px #DBA632;
+footer{
+    position: relative;
+    background-color: #D59310;
+    height: 200px;
+    top: 60px;
+    z-index: auto;
+    border-top: solid 2px white;
 }
 
+.card img{
+    max-width:300px;
+    max-height:200px;
+    width: auto;
+    height: auto;
+}
+
+.card{
+    max-width:300px;
+    width: auto;
+}
+
+
 html {
-  scroll-behavior:smooth;
+    scroll-behavior: smooth;
     overflow: scroll;
 }
 
-body{
+body {
     background-color: #4E1E10;
 }
 
@@ -29,13 +43,13 @@ body{
     word-spacing: 10px;
 }
 
-.nave a{
+.nave a {
     font-size: 16px;
     font-style: oblique;
-    color: white; 
+    color: white;
 }
 
-.nave a:visited{
+.nave a:visited {
     font-size: 16px;
     font-style: oblique;
     color: white;
@@ -43,14 +57,14 @@ body{
 }
 
 
-.nave a:hover{
+.nave a:hover {
     font-size: 18px;
     font-style: oblique;
     color: #6951be;
     text-decoration: none;
 }
 
-.nave a:checked{
+.nave a:checked {
     font-size: 16px;
     font-style: oblique;
     color: white;
@@ -80,7 +94,7 @@ header {
     z-index: 0;
 }
 
-.logo{
+.logo {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -93,12 +107,12 @@ header {
     z-index: 0;
 }
 
-.barra{
+.barra {
     background-color: #4E1E10;
     height: 5%;
     position: relative;
     z-index: 10;
-    
+
 }
 
 /* CSS relacionado a area de produtos*/
@@ -111,17 +125,23 @@ header {
 
 }
 
-.sobre img{
+.sobre img {
     width: 100%
 }
 
-.container-sobre{
+.container-sobre {
     margin-top: 10%;
 }
 
-.conteudo-sobre{
+.conteudo-sobre {
     color: white;
     font-size: 18px;
+    text-align: justify;
+}
+
+.conteudo-sobre h1{
+    color: white;
+    text-align: center;
 }
 
 /* CSS relacionado a area de produtos*/
@@ -133,6 +153,7 @@ header {
     position: relative;
     background: #4E1E10;
 }
+
 .menu-produtos {
     background: red;
     height: 5%;
@@ -144,22 +165,22 @@ header {
 
 }
 
-.menu-produtos a{
+.menu-produtos a {
     font-size: 24px;
     font-style: oblique;
     color: white;
-    
+
 }
 
-.menu-produtos a:visited{
+.menu-produtos a:visited {
     font-size: 24px;
     font-style: oblique;
     color: white;
     text-decoration: none;
-    
+
 }
 
-.menu-produtos a:focus{
+.menu-produtos a:focus {
     font-size: 24px;
     font-style: oblique;
     color: #D59310;
@@ -168,7 +189,7 @@ header {
     padding: 15px 15px;
 }
 
-.menu-produtos a:hover{
+.menu-produtos a:hover {
     font-size: 24px;
     font-style: oblique;
     color: #D59310;
@@ -177,16 +198,16 @@ header {
     padding: 15px 15px;
 }
 
-.menu-produtos a:checked{
+.menu-produtos a:checked {
     font-size: 24px;
     font-style: oblique;
     color: #D59310;
     text-decoration: none;
-    
-    
+
+
 }
 
-.conteudo-produtos{
+.conteudo-produtos {
     position: relative;
     background-color: whitesmoke;
     background-size: cover;
@@ -196,20 +217,89 @@ header {
     top: 60px;
     overflow-y: scroll;
     padding: 20px;
-    
+
 }
 
-.card{
+.conteudo-produtos::-webkit-scrollbar-track {
+    background-color: #D59310;
+}
+.conteudo-produtos::-webkit-scrollbar {
+    width: 6px;
+    background: #D59310;
+}
+.conteudo-produtos::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}
+
+.card {
     display: inline-block;
 }
 
+/* Sessao de contato*/
 .contato {
     background: blue;
-    height: 100%;
-    z-index: 2;
+    height: 85%;
+    width: 100%;
+    z-index: 100;
     position: relative;
     padding: 0;
     margin: 0;
+    padding-top: 50px;
+}
+
+.map {
+    position: absolute;
+    z-index: 101;
+    height: 96%;
+    width: 100%;
+}
+
+.formcontato {
+    position: absolute;
+    z-index: 102;
+    height: 85%;
+    width: 45%;
+    border-radius: 20px;
+    top: 10%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.formcontato h1{
+    color: #DBA632;
+}
+
+.formcontato form{
+    width: 85%;
+}
+
+.formcontato button{
+    width: 50%;
+    background-color: #DBA632;
+    color: white;
+    float: right;
+}
+
+.formcontato span{
+    background-color: #DBA632;
+    color: white;
+}
+
+.formcontato label{
+    color: white;
+}
+
+.formcontato p{
+    color: white;
+    font-size: 18px;
+}
+
+.formcontato hr{
+    color: white;
+    font-size: 1px;
 }
 
 /* CSS relacionado ao Menu*/
@@ -230,13 +320,13 @@ header {
     position: absolute;
 }
 
-.navbar a{
+.navbar a {
     font-size: 24px;
     font-style: oblique;
-    color: white; 
+    color: white;
 }
 
-.navbar a:visited{
+.navbar a:visited {
     font-size: 24px;
     font-style: oblique;
     color: white;
@@ -244,14 +334,14 @@ header {
 }
 
 
-.navbar a:hover{
+.navbar a:hover {
     font-size: 28px;
     font-style: oblique;
     color: white;
     text-decoration: none;
 }
 
-.navbar a:checked{
+.navbar a:checked {
     font-size: 24px;
     font-style: oblique;
     color: white;
@@ -271,19 +361,14 @@ header {
 }
 
 
-
 .contato {
     background: #4E1E10;
     height: 100%;
     z-index: 1;
     position: relative;
-
 }
 
-
-
-
-section{
+section {
     top: 50px;
+    border-top: solid 2px white;
 }
-

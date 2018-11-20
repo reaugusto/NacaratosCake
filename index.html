@@ -24,8 +24,8 @@
                     <a><i class="fas fa-phone px-2"></i> (xx)xxxxx-xxxx</a>
                     <a><i class="fas fa-phone px-2"></i> (xx)xxxxx-xxxx</a>
                 </div>
-                <div class="col">
-                    <button type="button" class="btn btn-warning" onclick="document.getElementById('id01').style.display='block'">Contate-nos</button>
+                <div class="col"><a href="#contato">
+                    <button type="button" class="btn btn-warning" onclick="">Contate-nos</button></a>
                 </div>
 
             </div>
@@ -75,11 +75,11 @@
                                 </div>
 
                                 <div class="item image">
-                                    <img src="img/logo.png" alt="Chicago" class="img-responsive">
+                                    <img src="img/cupcakes-decorados.jpg" alt="Chicago" class="img-responsive">
                                 </div>
 
                                 <div class="item image">
-                                    <img src="img/282860-P61N1Z-483@2x.png" alt="New york" class="img-responsive">
+                                    <img src="img/cupcakes-decorados.jpg" alt="New york" class="img-responsive">
                                 </div>
                             </div>
 
@@ -95,6 +95,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 conteudo-sobre">
+                        <h1>Quem somos?</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fringilla ornare vehicula. Quisque sit amet placerat mauris. Cras sed risus luctus, gravida tortor id, tristique felis. Nam nisl nisl, semper viverra augue a, tempus feugiat tellus. Quisque in justo volutpat felis finibus euismod. Quisque ullamcorper vel ipsum vel porta. In tortor lacus, sagittis et erat et, semper venenatis odio. Sed feugiat mollis ornare. Sed iaculis eros lacus, nec efficitur elit suscipit at. Vivamus ullamcorper volutpat gravida. Vestibulum accumsan vehicula felis, vel gravida mauris consectetur quis.</p>
                     </div>
 
@@ -108,36 +109,58 @@
                         <div class="col-sm-2 bp"><a href="#Produtos" onclick="showPote()">Bolo de Pote</a></div>
                     </div>
                     <div class="conteudo-produtos" id="conteudo-produtos">
-
-<!--
-                        <div class="col-sm-4 col-md-4 card">
-                            <div class="thumbnail">
-                                <img src="img/cupcakes-decorados.jpg" alt="...">
-                                <div class="caption">
-                                    <h3>Thumbnail label</h3>
-                                    <p>...</p>
-                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                </div>
-                            </div>
-                        </div>
--->
-                        
-                        
-                        
-                        
+                        <!-- carregamento dinamico dos cards pelo js-->
                     </div>
 
                 </div>
             </section>
             <section class="row contato" id="contato">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fringilla ornare vehicula. Quisque sit amet placerat mauris. Cras sed risus luctus, gravida tortor id, tristique felis. Nam nisl nisl, semper viverra augue a, tempus feugiat tellus. Quisque in justo volutpat felis finibus euismod. Quisque ullamcorper vel ipsum vel porta. In tortor lacus, sagittis et erat et, semper venenatis odio. Sed feugiat mollis ornare. Sed iaculis eros lacus, nec efficitur elit suscipit at. Vivamus ullamcorper volutpat gravida. Vestibulum accumsan vehicula felis, vel gravida mauris consectetur quis.</p>
+                <div class="container-fluid">
+                    <div class="map">
+                        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1877.4302540090277!2d-47.90977843907271!3d-19.761080286994297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bacfe910d357e9%3A0x9a41d37ac73d4f7f!2sR.+Dr.+Daniel+Mendes%2C+207+-+Conj.+Costa+Telles+I%2C+Uberaba+-+MG%2C+38035-330!5e0!3m2!1spt-BR!2sbr!4v1542582593657" frameborder="0" style="border:0" allowfullscreen>
+                </iframe>
+                    </div>
+                    <div class="formcontato col-md-offset-6">
+                        <h1>Fale conosco:</h1>
+                        <p><i class="fas fa-phone px-2">&nbsp; &nbsp;</i>(xx)xxxxx-xxxx</p>
+                        <p><i class="fas fa-phone px-2">&nbsp; &nbsp;</i>(xx)xxxxx-xxxx</p>
+                        <p><i class="fas fa-envelope px-2">&nbsp; &nbsp;</i>seunome@nacaratos.com.br</p>
+                        <p><i class="fas fa-map-marker-alt px-2">&nbsp; &nbsp;</i>Rua qualquer coisa, 000 - Cidade - UF</p>
+                        <br>
+                        <hr>
+                        <form>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="fnome"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Nome" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="femail"><i class="fas fa-at"></i></span>
+                                <input type="email" class="form-control" placeholder="E-mail" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="ftelefone"><i class="fas fa-phone"></i></span>
+                                <input type="tel" class="form-control" placeholder="Telefone" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="fmensagem"><i class="fas fa-comments"></i></span>
+                                <textarea rows="5" type="text" class="form-control" placeholder="Mensagem" aria-describedby="basic-addon1"></textarea>
+                            </div>
+                            <br>
+                            <div class="env">
+                                <button class="btn btn-default botao" type="button">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
+    <footer>
+    </footer>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVFt-wU_Ap8hNj3YUrJCq7CFXA7TYiOc0&callback=initMap" async defer></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
     <script src="Js/index.js"></script>
 </body>
