@@ -46,11 +46,11 @@ function mostraTodosSelfService(botao){      //Talvez .once seja mais eficiente 
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
-        
+
         li.onclick = function (){
             buscaSelfService(true,k,"Cobertura");
         };
-        
+
         li.append(k);
         campo1.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
     });
@@ -76,11 +76,11 @@ function mostraTodosSelfService(botao){      //Talvez .once seja mais eficiente 
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
-        
+
         li.onclick = function (){
             buscaSelfService(true,k,"Massa");
         };
-        
+
         li.append(k);
         campo3.appendChild(li);//no primeiro clique, recebe apenas a ultima atualizacao que campo recebeu, nos outros cliques funciona como deveria
     });
@@ -92,7 +92,7 @@ function mostraTodosSelfService(botao){      //Talvez .once seja mais eficiente 
 
 
 function buscaSelfService(foiClicado, key, campo){
-    
+
     if(foiClicado){
         tipoMonte = campo;
         buscaMonte = key;

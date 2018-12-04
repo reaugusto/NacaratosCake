@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -71,15 +72,15 @@
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
                                 <div class="item active image">
-                                    <img src="img/cupcakes-decorados.jpg" alt="Los Angeles" class="img-responsive">
+                                    <a data-toggle="modal" data-target="#myModal"><img src="img/cupcakes-decorados.jpg" alt="Chicago" class="img-responsive"></a>
                                 </div>
 
                                 <div class="item image">
-                                    <img src="img/cupcakes-decorados.jpg" alt="Chicago" class="img-responsive">
+                                    <a data-toggle="modal" data-target="#myModal"><img src="img/cupcakes-decorados.jpg" alt="Chicago" class="img-responsive"></a>
                                 </div>
 
                                 <div class="item image">
-                                    <img src="img/cupcakes-decorados.jpg" alt="New york" class="img-responsive">
+                                    <a data-toggle="modal" data-target="#myModal"><img src="img/cupcakes-decorados.jpg" alt="Chicago" class="img-responsive"></a>
                                 </div>
                             </div>
 
@@ -155,7 +156,19 @@
             </section>
         </div>
     </div>
-    <footer>
+    <footer id="footer">
+        <div class="footer-social">
+            <p>Redes Sociais:</p>
+            <a><i class="fab fa-facebook-f fa-3x"></i>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a><i class="fab fa-instagram fa-3x"></i>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a><i class="fab fa-twitter fa-3x"></i>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a><i class="fab fa-google fa-3x"></i>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+        <div class="footer-cop">
+            <p>A L&amp;R Solutions™. All rights reserved</p>
+        </div>
+
+
     </footer>
 
 
@@ -163,6 +176,26 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVFt-wU_Ap8hNj3YUrJCq7CFXA7TYiOc0&callback=initMap" async defer></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
     <script src="Js/index.js"></script>
+
+    <!-- Modal -->
+    <!--
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Imagem 1</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="img/cupcakes-decorados.jpg" alt="cupcakes" class="img-responsive">
+                </div>
+                <div class="modal-footer">
+                    <p>Autor: autor 1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
 </body>
 
 </html>

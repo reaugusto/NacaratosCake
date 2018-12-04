@@ -61,7 +61,7 @@ function writeUserData() {
         var storageRef = firebase.storage().ref('imagens/'+ tipo + "/" + document.getElementById("nomebolo").value + '.png');
         storageRef.put(file).then(function(snapshot) {
             alert('Uploaded a blob or file!');
-        });  
+        });
 
 
         document.getElementById("nomebolo").value = "";

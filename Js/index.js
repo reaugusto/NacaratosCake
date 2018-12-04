@@ -34,7 +34,7 @@ function showBolo(){
     var qntCup = document.getElementsByClassName("cupcake").length;
     var qntPote = document.getElementsByClassName("pote").length;
 
-    
+
     for(let i = 0; i<qntBolo; i++){
         document.getElementsByClassName("bolo")[i].style.display = "block";
     }
@@ -50,7 +50,7 @@ function showCupcake(){
     var qntCup = document.getElementsByClassName("cupcake").length;
     var qntPote = document.getElementsByClassName("pote").length;
 
-    
+
     for(let i = 0; i<qntBolo; i++){
         document.getElementsByClassName("bolo")[i].style.display = "none";
     }
@@ -66,7 +66,7 @@ function showPote(){
     var qntCup = document.getElementsByClassName("cupcake").length;
     var qntPote = document.getElementsByClassName("pote").length;
 
-    
+
     for(let i = 0; i<qntBolo; i++){
         document.getElementsByClassName("bolo")[i].style.display = "none";
     }
@@ -81,12 +81,12 @@ function showPote(){
 function mostraProdutosBolo(){
     var divPai = document.getElementById("conteudo-produtos");//USAR ID E MAIS EFETIVO
     var card;
-    
+
     //quando clicar em um, dar hidden nas outras 2 telas
     var ref = database.ref("bolo/");
-    
+
     ref.on("child_added", function (data){
-        
+
         //criar os cards aqui dentro usando os valores abaixo
         var pathReference = storage.ref('imagens/bolo/' + data.key + ".png");
 
@@ -95,13 +95,13 @@ function mostraProdutosBolo(){
             console.log(data.key);
             console.log(url);
             console.log(" ");
-            
+
             card = document.createElement("div");
             card.className = "bolo";
-            card.innerHTML = "<div class='col-sm-4 col-md-4 card card1'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
+            card.innerHTML = "<div class='col-sm-4 col-md-4 card card1'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p><span>Cobertura: </span>"+data.val().cobertura+"</p><p><span>Massa: </span>"+data.val().massa+"</p><p><span>Recheio: </span>"+data.val().recheio+"</p></div></div></div>";
             divPai.appendChild(card);
             //colocando a imagem em um elemento da pagina
-            
+
 //            var img = document.getElementById('myimg');
 //            img.src = url;
 
@@ -124,15 +124,15 @@ function mostraProdutosBolo(){
             }
         });
 
-        
-        
+
+
         console.log("nome: " + data.key);
         console.log("cobertura: " + data.val().cobertura);
         console.log("massa: " + data.val().massa);
         console.log("recheio: " + data.val().recheio);
         console.log(" ");
-        
-        
+
+
         //x[0].style.backgroundColor = "red"; //usar isso apenas se for por classe
     });
 }
@@ -144,9 +144,9 @@ function mostraProdutosCupcake(){
 
     //var x = document.getElementsByClassName("conteudo-produtos");// cada um precisa ter seu proprio lugar de popular
     //quando clicar em um, dar hidden nas outras 2 telas
-    
+
     ref.on("child_added", function (data){
-        
+
         //criar os cards aqui dentro usando os valores abaixo
         var pathReference = storage.ref('imagens/cupcake/' + data.key + ".png");
 
@@ -155,14 +155,14 @@ function mostraProdutosCupcake(){
             console.log(data.key);
             console.log(url);
             console.log(" ");
-            
+
             card = document.createElement("div");
             card.className = "cupcake";
-            card.innerHTML = "<div class='col-sm-4 col-md-4 card card1'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
+            card.innerHTML = "<div class='col-sm-4 col-md-4 card card1'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p><span>Cobertura: </span>"+data.val().cobertura+"</p><p><span>Massa: </span>"+data.val().massa+"</p><p><span>Recheio: </span>"+data.val().recheio+"</p></div></div></div>";
             divPai.appendChild(card);
-            
+
             //colocando a imagem em um elemento da pagina
-            
+
 //            var img = document.getElementById('myimg');
 //            img.src = url;
 
@@ -202,9 +202,9 @@ function mostraProdutosBolodepote(){
 
     //var x = document.getElementsByClassName("conteudo-produtos");// cada um precisa ter seu proprio lugar de popular
     //quando clicar em um, dar hidden nas outras 2 telas
-    
+
     ref.on("child_added", function (data){
-        
+
         //criar os cards aqui dentro usando os valores abaixo
         var pathReference = storage.ref('imagens/bolo de pote/' + data.key + ".png");
 
@@ -213,14 +213,14 @@ function mostraProdutosBolodepote(){
             console.log(data.key);
             console.log(url);
             console.log(" ");
-            
+
             card = document.createElement("div");
             card.className = "pote";
-            card.innerHTML = "<div class='col-sm-4 col-md-4 card card1'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p>"+data.val().cobertura+"</p><p>"+data.val().massa+"</p><p>"+data.val().recheio+"</p></div></div></div>";
+            card.innerHTML = "<div class='col-sm-4 col-md-4 card card1'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p><span>Cobertura: </span>"+data.val().cobertura+"</p><p><span>Massa: </span>"+data.val().massa+"</p><p><span>Recheio: </span>"+data.val().recheio+"</p></div></div></div>";
             divPai.appendChild(card);
-            
+
             //colocando a imagem em um elemento da pagina
-            
+
 //            var img = document.getElementById('myimg');
 //            img.src = url;
 
