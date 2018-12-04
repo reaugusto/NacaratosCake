@@ -1,4 +1,4 @@
-footer{
+footer {
     position: relative;
     background-color: #D59310;
     height: 200px;
@@ -7,16 +7,34 @@ footer{
     border-top: solid 2px white;
 }
 
-.card img{
-    max-width:300px;
-    max-height:200px;
+.card img {
+    max-width: 300px;
+    max-height: 200px;
     width: auto;
     height: auto;
 }
 
-.card{
-    max-width:300px;
+.card {
+    max-width: 300px;
     width: auto;
+}
+.card .thumbnail {
+    border: solid 1px #FF0090;
+}
+
+.card h3 {
+    font-family: 'Kaushan Script', cursive;
+    color: #FF0090;
+    font-weight: 500;
+}
+
+.card p {
+    color: #0080FF;
+    font-style: italic;
+}
+
+.card span {
+    font-weight: 600;
 }
 
 
@@ -41,12 +59,14 @@ body {
     justify-content: center;
     align-items: center;
     word-spacing: 10px;
+    font-weight: 700;
 }
 
 .nave a {
     font-size: 16px;
     font-style: oblique;
     color: white;
+    font-weight: 700;
 }
 
 .nave a:visited {
@@ -54,6 +74,7 @@ body {
     font-style: oblique;
     color: white;
     text-decoration: none;
+    font-weight: 700;
 }
 
 
@@ -62,6 +83,7 @@ body {
     font-style: oblique;
     color: #6951be;
     text-decoration: none;
+    font-weight: 700;
 }
 
 .nave a:checked {
@@ -69,6 +91,7 @@ body {
     font-style: oblique;
     color: white;
     text-decoration: none;
+    font-weight: 700;
 }
 
 .p0 {
@@ -139,9 +162,10 @@ header {
     text-align: justify;
 }
 
-.conteudo-sobre h1{
-    color: white;
+.conteudo-sobre h1 {
+    font-family: 'Kaushan Script', cursive;
     text-align: center;
+    color: #DBA632;
 }
 
 /* CSS relacionado a area de produtos*/
@@ -166,6 +190,7 @@ header {
 }
 
 .menu-produtos a {
+    font-family: 'Kaushan Script', cursive;
     font-size: 24px;
     font-style: oblique;
     color: white;
@@ -207,168 +232,232 @@ header {
 
 }
 
-.conteudo-produtos {
-    position: relative;
-    background-color: whitesmoke;
-    background-size: cover;
-    height: 85%;
-    width: 100%;
-    z-index: 4;
-    top: 60px;
-    overflow-y: scroll;
-    padding: 20px;
+    .conteudo-produtos {
+        position: relative;
+        background-image: url(../img/fundo.jpg);
+        background-size: cover;
+        background-clip: border-box;
+        height: 85%;
+        width: 100%;
+        z-index: 4;
+        top: 60px;
+        overflow-y: scroll;
+        padding: 20px;
+        border: solid 3px whitesmoke;
+        border-radius: 10px;
 
-}
+    }
 
-.conteudo-produtos::-webkit-scrollbar-track {
-    background-color: #D59310;
-}
-.conteudo-produtos::-webkit-scrollbar {
-    width: 6px;
-    background: #D59310;
-}
-.conteudo-produtos::-webkit-scrollbar-thumb {
-    background: #dad7d7;
-}
+    .conteudo-produtos::-webkit-scrollbar-track {
+        background-color: #D59310;
+    }
+    .conteudo-produtos::-webkit-scrollbar {
+        width: 6px;
+        background: #D59310;
+    }
+    .conteudo-produtos::-webkit-scrollbar-thumb {
+        background: #dad7d7;
+    }
 
-.card {
-    display: inline-block;
-}
+    .card {
+        display: inline-block;
+    }
 
-/* Sessao de contato*/
-.contato {
-    background: blue;
-    height: 85%;
-    width: 100%;
-    z-index: 100;
-    position: relative;
-    padding: 0;
-    margin: 0;
-    padding-top: 50px;
-}
+    /* Sessao de contato*/
+    .contato {
+        background: blue;
+        height: 85%;
+        width: 100%;
+        z-index: 100;
+        position: relative;
+        padding: 0;
+        margin: 0;
+        padding-top: 50px;
+    }
 
-.map {
-    position: absolute;
-    z-index: 101;
-    height: 96%;
-    width: 100%;
-}
+    .map {
+        position: absolute;
+        z-index: 101;
+        height: 96%;
+        width: 100%;
+    }
 
-.formcontato {
-    position: absolute;
-    z-index: 102;
-    height: 85%;
-    width: 45%;
-    border-radius: 20px;
-    top: 10%;
-    background-color: rgba(0,0,0,0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+    .formcontato {
+        position: absolute;
+        z-index: 102;
+        height: 85%;
+        width: 45%;
+        border-radius: 20px;
+        top: 10%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-.formcontato h1{
-    color: #DBA632;
-}
+    .formcontato h1 {
+        font-family: 'Kaushan Script', cursive;
+        color: #DBA632;
+    }
 
-.formcontato form{
-    width: 85%;
-}
+    .formcontato form {
+        width: 85%;
+    }
 
-.formcontato button{
-    width: 50%;
-    background-color: #DBA632;
-    color: white;
-    float: right;
-}
+    .formcontato button {
+        width: 50%;
+        background-color: #DBA632;
+        color: white;
+        float: right;
+    }
 
-.formcontato span{
-    background-color: #DBA632;
-    color: white;
-}
+    .formcontato span {
+        background-color: #DBA632;
+        color: white;
+    }
 
-.formcontato label{
-    color: white;
-}
+    .formcontato label {
+        color: white;
+    }
 
-.formcontato p{
-    color: white;
-    font-size: 18px;
-}
+    .formcontato p {
+        color: white;
+        font-size: 18px;
+    }
 
-.formcontato hr{
-    color: white;
-    font-size: 1px;
-}
+    .formcontato hr {
+        color: white;
+        font-size: 1px;
+    }
 
-/* CSS relacionado ao Menu*/
+    /* CSS relacionado ao Menu*/
+    .navbar {
+        width: 80%;
+        height: 100px;
+        background: #D59310;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: -150px auto;
+        z-index: 10;
+        border: 0;
+        padding: 0;
+        position: absolute;
+        font-weight: 700;
+    }
 
-.navbar {
-    width: 80%;
-    height: 100px;
-    background: #D59310;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: -150px auto;
-    z-index: 10;
-    border: 0;
-    padding: 0;
-    position: absolute;
-}
+    .navbar a {
+        font-size: 24px;
+        font-style: oblique;
+        color: white;
+        font-weight: 700;
+    }
 
-.navbar a {
-    font-size: 24px;
-    font-style: oblique;
-    color: white;
-}
-
-.navbar a:visited {
-    font-size: 24px;
-    font-style: oblique;
-    color: white;
-    text-decoration: none;
-}
-
-
-.navbar a:hover {
-    font-size: 28px;
-    font-style: oblique;
-    color: white;
-    text-decoration: none;
-}
-
-.navbar a:checked {
-    font-size: 24px;
-    font-style: oblique;
-    color: white;
-    text-decoration: none;
-}
-
-.affix {
-    top: 50px;
-    width: 100%;
-    height: 50px;
-    position: static;
-    margin: -50px auto;
-}
-
-.affix + .container-fluid {
-    padding-top: 0px;
-}
+    .navbar a:visited {
+        font-size: 24px;
+        font-style: oblique;
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+    }
 
 
-.contato {
-    background: #4E1E10;
-    height: 100%;
-    z-index: 1;
-    position: relative;
-}
+    .navbar a:hover {
+        font-size: 28px;
+        font-style: oblique;
+        color: white;
+        text-decoration: none;
+        font-weight: 800;
+    }
 
-section {
-    top: 50px;
-    border-top: solid 2px white;
-}
+    .navbar a:checked {
+        font-size: 24px;
+        font-style: oblique;
+        color: white;
+        text-decoration: none;
+        font-style: italic;
+    }
+
+    .affix {
+        top: 50px;
+        width: 100%;
+        height: 50px;
+        position: static;
+        margin: -50px auto;
+    }
+
+    .affix + .container-fluid {
+        padding-top: 0px;
+    }
+
+
+    .contato {
+        background: #4E1E10;
+        height: 100%;
+        z-index: 1;
+        position: relative;
+    }
+
+    section {
+        top: 50px;
+    }
+
+    .footer-up {
+        color: black;
+        text-align: right;
+        padding: 5px;
+    }
+
+    .footer-up a:hover {
+        color: red;
+    }
+
+    .footer-up a {
+        color: black;
+    }
+
+    .footer-social {
+        color: white;
+        align-items: center;
+        text-align: center;
+        margin-top: 15px;
+        font-style: italic;
+        font-weight: 700;
+    }
+
+    .footer-cop {
+        position: absolute;
+        width: 100%;
+        color: white;
+        align-items: center;
+        text-align: center;
+        margin-top: 13px;
+        font-style: italic;
+        bottom: 0px;
+    }
+
+    .footer-social a:hover {
+        color: white;
+        text-decoration: none;
+    }
+
+    .fim {
+        position: fixed;
+        bottom: 25px;
+        right: -15px;
+        z-index: 9999;
+        padding-right: 20px;
+    }
+
+    .fim a:hover {
+        color: red;
+    }
+
+    .fim a {
+        color: black;
+    }
+
+    /*Pagina avaliar*/
