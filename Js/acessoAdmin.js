@@ -17,6 +17,10 @@ function MOS(){
     window.location.href="adminMOS.html"
 }
 
+function cadastro(){
+    window.location.href="cadastrar.html"
+}
+
 function sair(){
     firebase.auth().signOut().then(function() {
         window.location.href = "/index.html";
