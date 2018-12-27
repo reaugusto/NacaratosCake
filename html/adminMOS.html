@@ -1,55 +1,81 @@
 <html>
-    <head>
-        <title>Nacarato's Cake - Monte o Seu</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="../css/style.css">
-    </head>
-    <body>
-        MONTE O SEU<br><br>
 
-        Massa:<br>
-        <input type="text" id="monteMassa"><br>
-        Recheio:<br>
-        <input type="text" id="monteRecheio"><br>
-        Cobertura:<br>
-        <input type="text" id="monteCobertura"><br>
-        <input type="checkbox" id="mBolo">Bolo<br>
-        <input type="checkbox" id="mCupcake">Cupcake<br>
-        <input type="checkbox" id="mBolodepote">Bolo de Pote<br>
-        <button onclick="writeSelfService()">Cadastrar</button><br><hr>
+<head>
+    <title>Nacarato's Cake - Monte o Seu</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/adminMOS.css">
+    <script src="cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
 
-        <select id="tipoMonte">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cadastro de Produtos</h1><br>
+        <div class="input">
+            <input type="text" id="monteMassa" placeholder="Massa">
+            <span><i class="fas fa-hockey-puck"></i></span>
+        </div>
+        <div class="input">
+            <input type="text" id="monteRecheio" placeholder="Recheio">
+            <span><i class="fas fa-apple-alt"></i></span>
+        </div>
+        <div class="input">
+            <input type="text" id="monteCobertura" placeholder="Cobertura">
+            <span><i class="fas fa-birthday-cake"></i></span>
+        </div>
+        <div class="input">
+            <input type="checkbox" id="mBolo"><label for="mBolo" class="stchk">Bolo</label>
+            <input type="checkbox" id="mCupcake"><label for="mCupcake" class="stchk">Cupcake</label>
+            <input type="checkbox" id="mBolodepote"><label for="mBolodepote" class="stchk">Bolo de Pote</label>
+        </div>
+        <button type="button" class="btn btn-success" onclick="writeSelfService()">Cadastrar</button><br>
+    </div>
+    <hr>
+    <h1>Pesquisar Produtos</h1>
+    <div class="input">
+        <select class="custom-select" id="tipoMonte">
             <option value="Massa">Massa</option>
             <option value="Recheio">Recheio</option>
             <option value="Cobertura">Cobertura</option>
-        </select><br><br>
-        Buscar: <input type="text" id="buscaMonteOSeu">
-        <button onclick="buscaSelfService()">Buscar</button><br><br>
-        <button onclick="mostraTodosSelfService(this)">Mostrar todos</button><br><br>
+        </select>
+    </div>
+
+    <div class="input-group mb-3 input">
+        <input type="text" id="buscaMonteOSeu" class="form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <span><i class="fas fa-search"></i></span>
+        <div class="input-group-append">
+            <button class="btn btn-danger" type="button" id="button-addon2" onclick="buscaSelfService()">OK</button>
+        </div>
+    </div>
+    <button onclick="mostraTodosSelfService(this)" class="btn btn-outline-info">Mostrar todos</button><br><br> Massas:
+    <ol id="buscaMassas">
+    </ol><br> Recheios:
+    <ol id="buscaRecheios">
+    </ol><br> Coberturas:
+    <ol id="buscaCoberturas">
+    </ol><br>
+    <hr> Alterar:
 
 
+    <br>
+    <input type="text" id="buscaMonteAlterar"><br>
+    <input type="checkbox" id="aBolo">Bolo<br>
+    <input type="checkbox" id="aCupcake">Cupcake<br>
+    <input type="checkbox" id="aBolodepote">Bolo de Pote<br>
 
-        Massas:
-        <ol id="buscaMassas">
-        </ol><br>
-        Recheios:
-        <ol id="buscaRecheios">
-        </ol><br>
-        Coberturas:
-        <ol id="buscaCoberturas">
-        </ol><br><hr>
+    <button onclick="salvaSelfService()">Alterar</button>
+    <button onclick="deletaSelfService()">Deletar</button>
 
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+    <script src="../Js/adminMOS.js"></script>
+</body>
 
-        Alterar:<br>
-        <input type="text" id="buscaMonteAlterar"><br>
-        <input type="checkbox" id="aBolo">Bolo<br>
-        <input type="checkbox" id="aCupcake">Cupcake<br>
-        <input type="checkbox" id="aBolodepote">Bolo de Pote<br>
-
-        <button onclick="salvaSelfService()">Alterar</button>
-        <button onclick="deletaSelfService()">Deletar</button>
-
-        <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
-        <script src="../Js/adminMOS.js"></script>
-    </body>
 </html>
