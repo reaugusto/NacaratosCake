@@ -153,7 +153,7 @@ function mostraComida(botao){
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
-
+        li.className = "list-group-item";
         li.onclick = function (){
             buscaComida(true,k,"bolo");
         };
@@ -168,6 +168,7 @@ function mostraComida(botao){
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
+        li.className = "list-group-item";
 
         li.onclick = function (){
             buscaComida(true,k,"cupcake");
@@ -183,6 +184,7 @@ function mostraComida(botao){
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
+        li.className = "list-group-item";
 
         li.onclick = function (){
             buscaComida(true,k,"bolo de pote");

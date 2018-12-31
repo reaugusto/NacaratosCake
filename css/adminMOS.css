@@ -111,4 +111,11 @@ hr, h1{
     color: white;
 }
 
+table{
+    text-align: center;
+    width: 100%;
+}
+.coluna{
+    width: 33%;
+}
 /* allow space for check mark */
