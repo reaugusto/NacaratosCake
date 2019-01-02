@@ -46,6 +46,7 @@ function mostraTodosSelfService(botao){      //Talvez .once seja mais eficiente 
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
+        li.className = "list-group-item";
 
         li.onclick = function (){
             buscaSelfService(true,k,"Cobertura");
@@ -61,6 +62,7 @@ function mostraTodosSelfService(botao){      //Talvez .once seja mais eficiente 
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
+        li.className = "list-group-item";
 
         li.onclick = function (){
             buscaSelfService(true,k,"Recheio");
@@ -76,6 +78,7 @@ function mostraTodosSelfService(botao){      //Talvez .once seja mais eficiente 
         console.log(data.key);
         var k = data.key;
         var li = document.createElement('li');
+        li.className = "list-group-item";
 
         li.onclick = function (){
             buscaSelfService(true,k,"Massa");

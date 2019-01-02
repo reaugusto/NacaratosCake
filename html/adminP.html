@@ -15,8 +15,9 @@
 </head>
 
 <body>
-    <h1>CADASTRAR PRODUTO</h1>
+    <h1>Cadastrar Produto</h1>
 
+    <div class="container">
     <div class="input" id="tipo">
         <select class="custom-select" id="tipo">
             <option value="bolo">Bolo</option>
@@ -49,8 +50,11 @@
     </div>
 
     <button type="button" class="btn btn-success" onclick="writeUserData()">Cadastrar</button><br>
+    
+    </div>
     <hr>
-
+    <div class="container">
+    <h1>Alterar Produto</h1>
     <div class="input">
         <select class="custom-select" id="tipoBusca">
             <option value="bolo">Bolo</option>
@@ -98,7 +102,7 @@
         </table>
 
     </div>
-
+    </div>
     <table>
         <thead>
             <tr>
@@ -137,7 +141,7 @@
             </tr>
             <tr>
                 <div class="input" style="align-items: center">
-                    <img id="fotoProduto" style="align-items: center">
+                    <img id="fotoProduto" style="align-content: center">
                     <div class="input-group">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="fotoUpdate" aria-describedby="inputGroupFileAddon04">

@@ -216,7 +216,7 @@ function mostraProdutosBolodepote(){
 
             card = document.createElement("div");
             card.className = "pote";
-            card.innerHTML = "<div class='col-sm-4 col-md-4 card card1'><div class='thumbnail'><img src="+url+" alt='...'><div class='caption'><h3>"+data.key+"</h3><p><span>Cobertura: </span>"+data.val().cobertura+"</p><p><span>Massa: </span>"+data.val().massa+"</p><p><span>Recheio: </span>"+data.val().recheio+"</p></div></div></div>";
+            card.innerHTML = "<div class='col-sm-4 col-md-4 card card1'><div class='thumbnail'><img src="+url+" alt='...' class='img-responsive'><div class='caption'><h3>"+data.key+"</h3><p><span>Cobertura: </span>"+data.val().cobertura+"</p><p><span>Massa: </span>"+data.val().massa+"</p><p><span>Recheio: </span>"+data.val().recheio+"</p></div></div></div>";
             divPai.appendChild(card);
 
             //colocando a imagem em um elemento da pagina

@@ -39,43 +39,73 @@
         <button type="button" class="btn btn-success" onclick="writeSelfService()">Cadastrar</button><br>
     </div>
     <hr>
-    <h1>Pesquisar Produtos</h1>
-    <div class="input">
-        <select class="custom-select" id="tipoMonte">
+    <div class="container">
+        <h1>Pesquisar Produtos</h1>
+        <div class="input">
+            <select class="custom-select" id="tipoMonte">
             <option value="Massa">Massa</option>
             <option value="Recheio">Recheio</option>
             <option value="Cobertura">Cobertura</option>
         </select>
-    </div>
-
-    <div class="input-group mb-3 input">
-        <input type="text" id="buscaMonteOSeu" class="form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <span><i class="fas fa-search"></i></span>
-        <div class="input-group-append">
-            <button class="btn btn-danger" type="button" id="button-addon2" onclick="buscaSelfService()">OK</button>
         </div>
+
+        <div class="input-group mb-3 input">
+            <input type="text" id="buscaMonteOSeu" class="form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <span><i class="fas fa-search"></i></span>
+            <div class="input-group-append">
+                <button class="btn btn-danger" type="button" id="button-addon2" onclick="buscaSelfService()">OK</button>
+            </div>
+        </div>
+        <button onclick="mostraTodosSelfService(this)" class="btn btn-outline-info">Mostrar todos</button>
+
+        <div class="input" style="width: 80%">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Massas:</th>
+                        <th>Recheios:</th>
+                        <th>Coberturas:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="coluna">
+                            <ol class="list-group" id="buscaMassas">
+                            </ol>
+                        </td>
+                        <td class="coluna">
+                            <ol class="list-group" id="buscaRecheios">
+                            </ol>
+                        </td>
+                        <td class="coluna">
+                            <ol class="list-group" id="buscaCoberturas">
+                            </ol>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
     </div>
-    <button onclick="mostraTodosSelfService(this)" class="btn btn-outline-info">Mostrar todos</button>
-    
-    <br><br> Massas:
-    <ol id="buscaMassas">
-    </ol><br> Recheios:
-    <ol id="buscaRecheios">
-    </ol><br> Coberturas:
-    <ol id="buscaCoberturas">
-    </ol><br>
-    <hr> Alterar:
+    <hr>
+    <div class="container">
+        <h1>Alterar</h1>
 
 
-    <br>
-    <input type="text" id="buscaMonteAlterar"><br>
-    <input type="checkbox" id="aBolo">Bolo<br>
-    <input type="checkbox" id="aCupcake">Cupcake<br>
-    <input type="checkbox" id="aBolodepote">Bolo de Pote<br>
+        <br>
+        <div class="input">
+            <input type="text" id="buscaMonteAlterar" placeholder="Atualizar">
+            <span><i class="fas fa-hockey-puck"></i></span>
+        </div>
 
-    <button onclick="salvaSelfService()">Alterar</button>
-    <button onclick="deletaSelfService()">Deletar</button>
+        <input type="checkbox" id="aBolo"><label for="aBolo" class="stchk">Bolo</label>
+        <input type="checkbox" id="aCupcake"><label for="aCupcake" class="stchk">Cupcake</label>
+        <input type="checkbox" id="aBolodepote"><label for="aBolodepote" class="stchk">Bolo de Pote</label><br>
 
+        <button type="button" class="btn btn-success" onclick="salvaSelfService()">Alterar</button>
+        <button type="button" class="btn btn-danger" onclick="deletaSelfService()">Deletar</button><br>
+
+    </div>
     <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
     <script src="../Js/adminMOS.js"></script>
 </body>

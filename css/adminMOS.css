@@ -107,14 +107,27 @@ input[type=checkbox]:checked + label:before {
     margin-left: 20px
 }
 
-hr, h1{
+h1{
     color: white;
+}
+hr{
+    border-top: 1px solid #FF0090;
+    display: block;
+    
 }
 
 table{
     text-align: center;
     width: 100%;
 }
+
+img{
+    display: block;
+    align-content: center;
+    border: 1px solid #FF0090;
+    border-radius: 5px;
+}
+
 .coluna{
     width: 33%;
 }
