@@ -10,6 +10,15 @@ var config = {
     messagingSenderId: "916033923262"
 };
 firebase.initializeApp(config);
+
+window.onload = function() {
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+        if(!firebaseUser){
+            window.location.href = "login.html";
+        }
+    });
+}
+
 var database = firebase.database();
 var storage = firebase.storage();
 

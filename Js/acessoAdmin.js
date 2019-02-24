@@ -9,6 +9,14 @@ var config = {
 
 firebase.initializeApp(config);
 
+window.onload = function() {
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+        if(!firebaseUser){
+            window.location.href = "login.html";
+        }
+    });
+}
+
 function produtos(){
     window.location.href = "adminP.html";
 }
